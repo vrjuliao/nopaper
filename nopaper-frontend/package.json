@@ -1,6 +1,9 @@
 {
   "name": "nopaper-frontend",
   "version": "0.1.0",
+  "engines": {
+    "node": "12.4.0"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "react-scripts start",
