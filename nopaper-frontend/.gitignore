@@ -77,3 +77,7 @@ typings/
 
 # bundle-analyzer
 stats.json
+
+# build
+build/static/css/*.map
+build/static/js/*.map
