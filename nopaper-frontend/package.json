@@ -2,9 +2,14 @@
   "name": "nopaper-frontend",
   "version": "0.1.0",
   "scripts": {
-    "start": "react-scripts start"
+    "start": "node server.js",
+    "dev": "react-scripts start",
+    "build": "react-scripts build"
   },
   "dependencies": {
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
+    "path": "^0.12.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",
