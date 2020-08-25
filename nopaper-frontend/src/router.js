@@ -11,6 +11,13 @@ const routes = [
 const App = () => {
   return (
     <Router>
+      <style jsx global>{`
+        body {
+          margin: 0px;
+          padding: 0px;
+          background-color: #edf3ed;
+        }
+      `}</style>
       <div>
         <Route exact path="/" component={() => (
           <Redirect to={{ pathname: '/login' }} />

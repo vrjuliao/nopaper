@@ -2,8 +2,10 @@ import React from 'react';
 
 function Login(props) {
   return (
-    <div>
-      <span>Just testing..... it may work.....or not.</span>
+    <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
+      <div style={{ backgroundColor: 'white', justifyContent: 'center', alignContent: 'center', alignItems: 'center', padding: 25 }}>
+        <span>Hellooo from nopaper app ;)</span>
+      </div>
     </div>
   );
 }
