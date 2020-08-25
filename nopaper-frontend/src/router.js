@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 
@@ -6,14 +7,6 @@ import Login from '../src/pages/Login';
 const routes = [
   { path: '/login', component: Login }
 ]
-
-function InternalRoute ({ component: Component, ...rest }) {
-  <Route {...rest} 
-    render={props => (
-      <Component {...props} />
-    )}
-  />
-}
 
 const App = () => {
   return (
@@ -32,6 +25,16 @@ const App = () => {
         </Switch>
       </div>
     </Router>
+  );
+}
+
+function InternalRoute ({ component: Component, ...rest }) {
+  return (
+    <Route {...rest} 
+      render={props => (
+        <Component {...props} />
+      )}
+    />
   );
 }
 
