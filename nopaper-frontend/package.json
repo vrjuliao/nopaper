@@ -8,7 +8,7 @@
     "start": "node server.js",
     "dev": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "git subtree push --prefix nopaper-frontend heroku master"
+    "deploy": "npm run build && git subtree push --prefix nopaper-frontend heroku master"
   },
   "dependencies": {
     "express": "^4.17.1",
