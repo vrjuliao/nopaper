@@ -1,8 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const config_dorenv = require("dotenv-safe").config();
+const jwt = require('jsonwebtoken');
 
 // Importa Routes
-const routes = require('./routes/testRoutes'); 
+const routes = require('./routes/routes'); 
 
 const app = express();
 
