@@ -1,0 +1,28 @@
+#page-login {
+    width: 100vw;
+    height: 100vh;
+}
+
+#page-login div {
+    display: 'flex'; 
+    flex: 1;
+    justify-content: 'center';
+    align-content: 'center';
+    align-items: 'center';
+}
+
+#page-login div + div{
+    background-color: 'white';
+    justify-content: 'center';
+    align-content: 'center';
+    align-items: 'center';
+    padding: 25
+}
+
+#page-login main{
+    display: 'flex'; 
+    flex: 1;
+    justify-content: 'center';
+    align-content: 'center';
+    align-items: 'center';
+}
