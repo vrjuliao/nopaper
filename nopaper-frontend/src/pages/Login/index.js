@@ -22,8 +22,10 @@ function Login(props) {
       
       <div className="logo-container">
         {/* <img src='https://i.vimeocdn.com/portrait/25736037_300x300' width='80px' alt="Logo"/> */}
-        <span style={{ color: 'white', fontSize: 80, fontWeight: 'bold' }}>{'Nopaper.'}</span>
-        <p style={{ color: 'white', fontSize: 40,  }}>Cadernos colaborativos</p>
+        <div className="text-container">
+          <span className="title" >{'Nopaper.'}</span>
+          <p style={{ color: 'white', fontSize: 40,  }}>Cadernos colaborativos</p>
+        </div>
       </div>
       
       <div className="card">

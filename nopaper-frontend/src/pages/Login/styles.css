@@ -5,10 +5,24 @@
 
 .logo-container {
     flex-direction: column;
-    display: inline-block;
     line-height: initial;
-    padding-left: 10vw;
-    text-align: left
+    
+    padding: 10%;
+    text-align: left;
+    align-items: center;
+    align-content: center;
+    
+}
+
+.title {
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.text-container {
+    align-self: center;
+    padding-right: 50px;
 }
 
 .card {
@@ -17,38 +31,49 @@
     width: 100vw;
     flex-direction: column;
     display: flex; 
-    align-self: flex-start;
-    justify-content: center;
-    align-content: center;
+    
     align-items: center;
+    
 }
 
 
 @media (min-width: 960px) {
     #page-login {
-        max-width: 1250px;
+        /* max-width: 1250px; */
         /* max-height: 700px; */
-
         display: grid;
-        grid-template-columns: 1.15fr 0.85fr;
+        grid-template-columns: 1.0fr 1.0fr;
         grid-template-areas: 
             "logo card"
         ;
     }
 
     .logo-container {
-        width: 100%;
+        
         grid-area: logo;
         align-self: center;
+        text-align: left;
+        padding: 0%;
+    }
+
+    .text-container {
+        float: right;
+        padding-right: 50px;
+    }
+
+    .title {
+        color: white;
+        font-size: 80px;
+        font-weight: bold;
     }
 
     .logo-container img{
-        margin-bottom: 30px;
+        margin-bottom: 0px;
         align-self: initial;
     }
 
     .logo-container h1{
-        align-self: center;
+        /* align-self: center; */
     }
 
     .card {
@@ -56,6 +81,8 @@
         height: 100%;
         width: 100%;
         min-width: 550px;
+        justify-content: center;
+        align-items: baseline
     }
 
 
