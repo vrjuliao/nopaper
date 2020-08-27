@@ -3,26 +3,60 @@
     height: 100vh;
 }
 
-#page-login div {
-    display: 'flex'; 
-    flex: 1;
-    justify-content: 'center';
-    align-content: 'center';
-    align-items: 'center';
+.logo-container {
+    flex-direction: column;
+    display: flex; 
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
-#page-login div + div{
-    background-color: 'white';
-    justify-content: 'center';
-    align-content: 'center';
-    align-items: 'center';
-    padding: 25
+.card {
+   /* padding: 30px; */
+    height: 60vh;
+    width: 100vw;
+    flex-direction: column;
+    display: flex; 
+    align-self: flex-start;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
-#page-login main{
-    display: 'flex'; 
-    flex: 1;
-    justify-content: 'center';
-    align-content: 'center';
-    align-items: 'center';
+
+@media (min-width: 960px) {
+    #page-login {
+        max-width: 1200px;
+        /* max-height: 700px; */
+
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        grid-template-areas: 
+            "logo card"
+        ;
+    }
+
+    .logo-container {
+        width: 100%;
+        grid-area: logo;
+        align-self: center;
+    }
+
+    .logo-container img{
+        margin-bottom: 30px;
+        align-self: initial;
+    }
+
+    .logo-container h1{
+        align-self: center;
+    }
+
+    .card {
+        grid-area: card;
+        height: 100%;
+        width: 100%;
+        min-width: 550px;
+    }
+
+
 }

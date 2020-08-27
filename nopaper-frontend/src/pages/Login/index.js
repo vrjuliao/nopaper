@@ -18,60 +18,69 @@ function Login(props) {
   const [ password, setPassword ] = useState('');
 
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' , flex: 1, justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
-      <Card bordered={false} style={{ padding: '50px', display: 'flex', flexDirection: 'column' , justifyContent: 'center', alignContent: 'center', alignItems: 'center' }} >
-        <img src='https://i.vimeocdn.com/portrait/25736037_300x300' width='80px' />
-        <Form onFinish={handleLogin} style={{marginTop: '15px'}}>
-          <Form.Item
-            name="email"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your Email!',
-              },
-            ]}
-          >
-            <Input 
-              size='large'
-              prefix={<MailOutlined className="site-form-item-icon" />} 
-              placeholder="Seu melhor e-mail"
-              type='email'
-            />
-          </Form.Item>
-
-          <Form.Item
-            style={{marginTop: '25px'}}
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your password!',
-              },
-            ]}
-          >
-            <Input.Password
-              size='large' 
-              prefix={<KeyOutlined className="site-form-item-icon" />} 
-              placeholder="Senha"
-              type="password"
-            />
-          </Form.Item>
-
-          <Form.Item>
-            <Button 
-              style={{width: '100%', marginTop: '25px'}}
-              type="primary" 
-              htmlType="submit" 
-              className="login-form-button"
+    <div id='page-login' >
+      <div className="logo-container">
+        <img src='https://i.vimeocdn.com/portrait/25736037_300x300' width='80px' alt="Logo"/>
+        <h1>Seus cadernos colaborativos</h1>
+      </div>
+      
+      <div className="card">
+        <Card 
+          style={{width:"80%", maxWidth: '450px'}} 
+          bordered={false} 
+        >
+          <Form onFinish={handleLogin} style={{marginTop: '15px'}}>
+            <Form.Item
+              name="email"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your Email!',
+                },
+              ]}
             >
-              Log in
-            </Button>
-            <p style={{marginTop: '10px', textAlign: 'center'}}>
-              Não tem uma conta? <a href="">Registre-se!</a>
-            </p>
-          </Form.Item>
-        </Form>
-      </Card>
+              <Input 
+                size='large'
+                prefix={<MailOutlined className="site-form-item-icon" />} 
+                placeholder="Seu melhor e-mail"
+                type='email'
+              />
+            </Form.Item>
+
+            <Form.Item
+              style={{marginTop: '25px'}}
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your password!',
+                },
+              ]}
+            >
+              <Input.Password
+                size='large' 
+                prefix={<KeyOutlined className="site-form-item-icon" />} 
+                placeholder="Senha"
+                type="password"
+              />
+            </Form.Item>
+
+            <Form.Item>
+              <Button 
+                style={{width: '100%', marginTop: '25px'}}
+                type="primary" 
+                htmlType="submit" 
+                className="login-form-button"
+              >
+                Log in
+              </Button>
+              <p style={{marginTop: '10px', textAlign: 'center'}}>
+                Não tem uma conta? <a href="">Registre-se!</a>
+              </p>
+            </Form.Item>
+          </Form>
+        </Card>
+      </div>
     </div>
   );
 }
