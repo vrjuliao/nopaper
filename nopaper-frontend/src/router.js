@@ -15,7 +15,7 @@ const App = () => {
         body {
           margin: 0px;
           padding: 0px;
-          background-color: #edf3ed;
+          background-image: linear-gradient(to bottom right, rgba(12, 202, 154,0.8), rgba(13, 202, 120,0.5) );
         }
       `}</style>
       <div>
