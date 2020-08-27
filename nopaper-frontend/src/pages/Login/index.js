@@ -19,29 +19,37 @@ function Login(props) {
 
   return (
     <div id='page-login' >
+      
       <div className="logo-container">
-        <img src='https://i.vimeocdn.com/portrait/25736037_300x300' width='80px' alt="Logo"/>
-        <h1>Seus cadernos colaborativos</h1>
+        {/* <img src='https://i.vimeocdn.com/portrait/25736037_300x300' width='80px' alt="Logo"/> */}
+        <span style={{ color: 'white', fontSize: 80, fontWeight: 'bold' }}>{'Nopaper.'}</span>
+        <p style={{ color: 'white', fontSize: 40,  }}>Cadernos colaborativos</p>
       </div>
       
       <div className="card">
         <Card 
-          style={{width:"80%", maxWidth: '450px'}} 
+          style={{ width:"80%", maxWidth: '450px', borderRadius: 8 }} 
           bordered={false} 
         >
+          <div style={{ textAlign: 'center' }}>
+            <span style={{ color: '#0cca9a', fontWeight: 'bold', fontSize: 25 }}>Faça seu Login</span>
+          </div>
+          <div style={{ display: 'flex', flex: 1, width: '100%',  justifyContent: 'center', padding: 25, paddingTop: 10 }}>
+            <div style={{ width: 60, height: 7, backgroundColor: '#0cca9a', borderRadius: 12 }}></div>
+          </div>
           <Form onFinish={handleLogin} style={{marginTop: '15px'}}>
             <Form.Item
               name="email"
               rules={[
                 {
                   required: true,
-                  message: 'Please input your Email!',
+                  message: 'Insira seu melhor email!',
                 },
               ]}
             >
               <Input 
                 size='large'
-                prefix={<MailOutlined className="site-form-item-icon" />} 
+                prefix={<MailOutlined style={{ marginRight: 10, color: '#0cca9a' }} className="site-form-item-icon" />} 
                 placeholder="Seu melhor e-mail"
                 type='email'
               />
@@ -53,13 +61,13 @@ function Login(props) {
               rules={[
                 {
                   required: true,
-                  message: 'Please input your password!',
+                  message: 'Coloque sua senha!',
                 },
               ]}
             >
               <Input.Password
                 size='large' 
-                prefix={<KeyOutlined className="site-form-item-icon" />} 
+                prefix={<KeyOutlined style={{ marginRight: 10, color: '#0cca9a' }} className="site-form-item-icon" />} 
                 placeholder="Senha"
                 type="password"
               />
@@ -67,20 +75,21 @@ function Login(props) {
 
             <Form.Item>
               <Button 
-                style={{width: '100%', marginTop: '25px'}}
+                style={{ width: '100%', marginTop: '25px', borderRadius: 4, paddingTop: 10, paddingBottom: 30  }}
                 type="primary" 
                 htmlType="submit" 
                 className="login-form-button"
               >
-                Log in
+                <span style={{  }}>ENTRAR</span>
               </Button>
-              <p style={{marginTop: '10px', textAlign: 'center'}}>
-                Não tem uma conta? <a href="">Registre-se!</a>
+              <p style={{marginTop: '10px', textAlign: 'center', color: 'rgba(0,0,0,0.6)'}}>
+                Não tem uma conta? <a href="" style={{ color: '#0cca9a'}}>Registre-se!</a>
               </p>
             </Form.Item>
           </Form>
         </Card>
       </div>
+    
     </div>
   );
 }
