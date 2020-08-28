@@ -16,3 +16,19 @@ exports.login = function (req, res, next) {
     res.status(500).json({ message: 'Login inválido!' });
   });
 };
+
+exports.register = function (req, res) {
+  console.log(req.body);
+
+  let user = new User({
+    nome: req.body.nome,
+    pwd: req.body.pwd,
+  });
+
+  user.save(function (err) {
+    if (err) {
+      return res.status(501).send('Não foi possivel registrar! Tente novamente mais tarde.');
+    }
+    res.send('Registro bem sucedido.');
+  });
+};

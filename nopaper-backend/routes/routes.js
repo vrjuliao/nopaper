@@ -11,6 +11,7 @@ const test_controller = require('../controllers/testController');
 const login_controller = require('../controllers/loginController');
 
 router.post('/login', login_controller.login);
+router.post('/register', login_controller.register);
 
 router.use('/', middleware.authGuard);
 
