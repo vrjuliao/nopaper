@@ -26,13 +26,13 @@ Cadernos virtuais colaborativos.
 * Eu como usuário gostaria de organizar minhas anotações. Para que possa 
   separá-las por tema ou assunto.
   - [ ] Criar tela dashboard - Vinícius.
-  - [ ] Criar modelo de **Mochila** - Gustavo.
+  - [x] Criar modelo de **Mochila** - Gustavo.
 
 * Eu como usuário gostaria de acessar minha própria conta e ser autenticado.
   Para que somente eu consiga editar as minhas próprias notas.
-  - [ ] Criar tela de login - Lucas.
+  - [x] Criar tela de login - Lucas.
   - [ ] Criar tela de registro - Luiz.
-  - [ ] Criar modelo de **Usuário** - Matheus.
+  - [x] Criar modelo de **Usuário** - Matheus.
   - [ ] Criar estrutura de permissões - Vinícius.
 
 * Eu como usuário desejo encontrar outros usuários ou arquivos de Anotações. 
@@ -48,4 +48,4 @@ Cadernos virtuais colaborativos.
 * Eu como usuário desejo marcar outros usuários como favoritos. Para facilitar
   o acesso às notas desses outros perfis do sistema.
   - [ ] Criar tela de favoritos - Vinícius.
-  - [ ] Criar modelo de **Favoritos** - Gustavo.
+  - [x] Criar modelo de **Favoritos** - Gustavo.
