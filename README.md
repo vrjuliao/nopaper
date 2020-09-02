@@ -2,7 +2,8 @@
 
 Cadernos virtuais colaborativos.
 
-[Prototipo](https://gustavovergara11129.invisionapp.com/public/share/WU1EL0XV3M)
+[Prototipo de baixa fidelidade](https://gustavovergara11129.invisionapp.com/public/share/WU1EL0XV3M)
+[Prototipo de alta fidelidade](https://xd.adobe.com/view/521c3200-1015-4758-abf0-6a35fb877ff7-074f/)
 
 ---
 ## Team
@@ -14,7 +15,7 @@ Cadernos virtuais colaborativos.
 
 ---
 ## Sprint Planning:
-<!-- como, pra que, para -->
+<!-- quem, o quê, por quê -->
 
 * Eu como usuário gostaria de criar anotações de forma virtual, com uma fácil
   notação de escrita. Para acessá-las no futuro.
