@@ -2,19 +2,19 @@ const jwt = require('jsonwebtoken');
 var User = require('../models/userModel');
 
 exports.login = function (req, res, next) {
-  console.log(req.body.email + '  ' + req.body.pwd);
-  User.find({ email: req.body.email }, function (err, product) {
-    if (err) return res.status(501).send('Usuario inválido!');
-    console.log(product);
-    if (product[0].pwd === req.body.pwd) {
-      var id = product._id; // sitaxe correta?
+  console.log(req.body);
+  User.find({ email: req.body.email }, function (err, user) {
+    if (err) return res.status(400).send('Usuario inválido!');
+    console.log(user);
+    if (user.length > 0 && user[0].pwd === req.body.pwd) {
+      var id = user._id; // sitaxe correta?
       var token = jwt.sign({ id }, process.env.SECRET, {
         expiresIn: 10800, // expires in 3h
       });
       return res.json({ auth: true, token: token });
     }
 
-    res.status(500).json({ message: 'Login inválido!' });
+    res.status(400).json({ message: 'Login inválido!' });
   });
 };
 

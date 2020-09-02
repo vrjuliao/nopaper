@@ -14,16 +14,16 @@ exports.create = function (req, res) {
     });
     smartphone.save(function (err) {
         if (err) {
-            return res.status(501).send('Registo de Smartphone não foi criado')
+            return res.status(501).send('Registro de Smartphone não foi criado')
         }
-        res.send('Registo de Smartphone criado com sucesso')
+        res.send('Registro de Smartphone criado com sucesso')
     });
    
 };
 
 exports.details = function (req, res) {
     Smartphone.find({marca: req.params.id}, function (err, product) {
-        if(err) return res.status(501).send('Registo de Smartphone não encontrado');
+        if(err) return res.status(501).send('Registro de Smartphone não encontrado');
         res.send(product);
     });
 };

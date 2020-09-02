@@ -4,18 +4,22 @@ import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { KeyOutlined, MailOutlined } from '@ant-design/icons'
 
 import './styles.css';
-
+import Api from '../../modules/api';
 
 
 function Login(props) {
 
-  function handleLogin(e){
-    e.preventDefault();
-    alert("Login realizado com sucesso!");
-  };
-
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
+
+  const handleLogin = async () => {
+    try {
+      await Api.login(email, password);
+      alert("Login bem sucedido!!");
+    } catch (error) {
+      alert("Email ou senha incorretos");
+    }
+  };
 
   return (
     <div id='page-login' >
@@ -39,7 +43,7 @@ function Login(props) {
           <div style={{ display: 'flex', flex: 1, width: '100%',  justifyContent: 'center', padding: 25, paddingTop: 10 }}>
             <div style={{ width: 60, height: 7, backgroundColor: '#0cca9a', borderRadius: 12 }}></div>
           </div>
-          <Form onFinish={handleLogin} style={{marginTop: '15px'}}>
+          <Form style={{marginTop: '15px'}}>
             <Form.Item
               name="email"
               rules={[
@@ -54,6 +58,8 @@ function Login(props) {
                 prefix={<MailOutlined style={{ marginRight: 10, color: '#0cca9a' }} className="site-form-item-icon" />} 
                 placeholder="Seu melhor e-mail"
                 type='email'
+                value={email}
+                onChange={(value) => setEmail(value.target.value)}
               />
             </Form.Item>
 
@@ -72,6 +78,8 @@ function Login(props) {
                 prefix={<KeyOutlined style={{ marginRight: 10, color: '#0cca9a' }} className="site-form-item-icon" />} 
                 placeholder="Senha"
                 type="password"
+                value={password}
+                onChange={(value) => setPassword(value.target.value)}
               />
             </Form.Item>
 
@@ -81,6 +89,7 @@ function Login(props) {
                 type="primary" 
                 htmlType="submit" 
                 className="login-form-button"
+                onClick={() => handleLogin()}
               >
                 <span style={{  }}>ENTRAR</span>
               </Button>

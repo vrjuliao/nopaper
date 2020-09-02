@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const config_dorenv = require("dotenv-safe").config();
 const jwt = require('jsonwebtoken');
+var cors = require('cors');
 
 // Importa Routes
 const routes = require('./routes/routes'); 
@@ -18,6 +19,7 @@ let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Erro na Ligação ao MongoDB'));
 
 //Body Parser
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', routes);
