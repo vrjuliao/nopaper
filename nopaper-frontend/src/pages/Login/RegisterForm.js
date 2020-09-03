@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import { Form, Input, Button } from 'antd';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
-import { KeyOutlined, MailOutlined } from '@ant-design/icons'
+import { KeyOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
 
 import './styles.css';
 import Api from '../../modules/api';
@@ -42,7 +42,7 @@ function RegisterForm(props) {
         >
             <Input 
             size='large'
-            prefix={<MailOutlined style={{ marginRight: 10, color: '#0cca9a' }} className="site-form-item-icon" />} 
+            prefix={<UserOutlined style={{ marginRight: 10, color: '#0cca9a' }} className="site-form-item-icon" />} 
             placeholder="Seu nome"
             type='text'
             value={name}
