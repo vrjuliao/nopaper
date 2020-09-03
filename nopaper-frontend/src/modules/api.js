@@ -71,7 +71,7 @@ async function register(name, email, password) {
     });
     console.log(response);
   } catch (error) {
-    return new Error(error.message || 'Erro');
+    throw new Error(error.message || 'Erro');
   }
 }
 

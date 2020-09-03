@@ -29,7 +29,7 @@ exports.register = function (req, res) {
 
   user.save(function (err) {
     if (err) {
-      return res.status(501).send('Não foi possivel registrar! Tente novamente mais tarde.');
+      return res.status(400).send('Não foi possivel registrar! Tente novamente mais tarde.');
     }
     res.send('Registro bem sucedido.');
   });
