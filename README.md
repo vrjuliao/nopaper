@@ -2,7 +2,8 @@
 
 Cadernos virtuais colaborativos.
 
-[Prototipo](https://gustavovergara11129.invisionapp.com/public/share/WU1EL0XV3M)
+[Prototipo de baixa fidelidade](https://gustavovergara11129.invisionapp.com/public/share/WU1EL0XV3M)
+[Prototipo de alta fidelidade](https://xd.adobe.com/view/521c3200-1015-4758-abf0-6a35fb877ff7-074f/)
 
 ---
 ## Team
@@ -14,7 +15,7 @@ Cadernos virtuais colaborativos.
 
 ---
 ## Sprint Planning:
-<!-- como, pra que, para -->
+<!-- quem, o quê, por quê -->
 
 * Eu como usuário gostaria de criar anotações de forma virtual, com uma fácil
   notação de escrita. Para acessá-las no futuro.
@@ -26,13 +27,13 @@ Cadernos virtuais colaborativos.
 * Eu como usuário gostaria de organizar minhas anotações. Para que possa 
   separá-las por tema ou assunto.
   - [ ] Criar tela dashboard - Vinícius.
-  - [ ] Criar modelo de **Mochila** - Gustavo.
+  - [x] Criar modelo de **Mochila** - Gustavo.
 
 * Eu como usuário gostaria de acessar minha própria conta e ser autenticado.
   Para que somente eu consiga editar as minhas próprias notas.
-  - [ ] Criar tela de login - Lucas.
+  - [x] Criar tela de login - Lucas.
   - [ ] Criar tela de registro - Luiz.
-  - [ ] Criar modelo de **Usuário** - Matheus.
+  - [x] Criar modelo de **Usuário** - Matheus.
   - [ ] Criar estrutura de permissões - Vinícius.
 
 * Eu como usuário desejo encontrar outros usuários ou arquivos de Anotações. 
@@ -48,4 +49,4 @@ Cadernos virtuais colaborativos.
 * Eu como usuário desejo marcar outros usuários como favoritos. Para facilitar
   o acesso às notas desses outros perfis do sistema.
   - [ ] Criar tela de favoritos - Vinícius.
-  - [ ] Criar modelo de **Favoritos** - Gustavo.
+  - [x] Criar modelo de **Favoritos** - Gustavo.
