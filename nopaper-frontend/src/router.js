@@ -3,9 +3,11 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import { hot } from 'react-hot-loader';
 
 import Login from '../src/pages/Login';
+import Dashboard from '../src/pages/Dashboard';
 
 const routes = [
-  { path: '/login', component: Login }
+  { path: '/login', component: Login },
+  { path: '/dashboard', component: Dashboard }
 ]
 
 const App = () => {
