@@ -35,8 +35,18 @@ function Dashboard(props) {
       </div>
 
       <div style={{ alignItems: 'center', height: '-webkit-calc(100% - 95px)', position: 'relative' }} >
-        <div style={{ backgroundColor: '#fff', marginLeft: '17.5%', width: '65%', height: '100%' }}>
-          <span>Helloo</span>
+        <div style={{ backgroundColor: '#fff', marginLeft: '17.5%', width: '65%', height: '100%', padding: 60 }}>
+
+          <div style={{ display: 'inline-flex', cursor: 'pointer' }}>
+            <div style={{ width: 15, height: 145, backgroundColor: '#fedd0e', borderTopLeftRadius: 8.5 }}>
+              <div style={{ marginTop: 137, width: 0, height: 0, borderLeft: '7.5px solid transparent', borderRight: '7.5px solid transparent', borderBottom: '8px solid white' }}></div>
+            </div>
+            <div style={{ width: 90, height: 125, backgroundColor: 'rgba(97,110,126,0.75)', padding: 10, borderBottomRightRadius: 8.5, borderTopRightRadius: 8.5 }}>
+              <div style={{ backgroundColor: 'white', height: 15, marginTop: 7, borderRadius: 2 }}></div>
+              <div style={{ backgroundColor: 'white', height: 5, marginTop: 10, borderRadius: 1 }}></div>
+            </div>
+          </div>
+        
         </div>
       </div>
 
