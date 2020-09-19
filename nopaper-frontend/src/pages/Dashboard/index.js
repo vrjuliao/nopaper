@@ -45,6 +45,10 @@ function Dashboard(props) {
               <div style={{ backgroundColor: 'white', height: 15, marginTop: 7, borderRadius: 2 }}></div>
               <div style={{ backgroundColor: 'white', height: 5, marginTop: 10, borderRadius: 1 }}></div>
             </div>
+            <div style={{ paddingLeft: 18 }}>
+              <span style={{ fontSize: 21, fontWeight: 'bold', color: 'rgba(0,0,0,0.7)' }}>College</span>
+              <p style={{ fontSize: 14, color: 'rgba(0,0,0,0.4)', marginTop: 30 }}>Criado por<br/>Luiz Felipe<br/>18/09/2020</p>
+            </div>
           </div>
         
         </div>
