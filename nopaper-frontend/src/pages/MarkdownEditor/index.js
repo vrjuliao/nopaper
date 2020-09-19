@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { } from 'antd';
+import { Input } from 'antd';
 
 import TopHeader from '../../components/TopHeader';
 
@@ -19,9 +19,27 @@ function MarkdownEditor(props) {
 
       <div style={{ alignItems: 'center', height: '-webkit-calc(100% - 95px)', position: 'relative' }} >
         <div style={{ backgroundColor: '#fff', marginLeft: '17.5%', width: '65%', height: '100%', padding: 20, paddingTop: 20, overflow: 'scroll' }}>
+          
+          <div style={{ display: 'flex' }}>
+
+            <div style={{  }}>
+              <Input placeholder="Nome da Nota" bordered={false} style={{ paddingLeft: 0, fontSize: 25, borderBottom: '1px solid #2fa8d4' }} /> 
+            </div>
+
+            <div style={{ alignSelf: 'flex-end', display: 'flex', float: 'right' }}>
+              <div style={{ backgroundColor: 'rgba(0,0,0,0.2)', paddingLeft: 30, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
+                <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Cancelar</span>
+              </div>
+              <div style={{ marginLeft: 15,  backgroundColor: '#2fa8d4', paddingLeft: 30, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
+                <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Salvar</span>
+              </div>
+            </div>
+
+          </div>
+          
           <MdEditor
             value={markdownText}
-            style={{ height: '70vh' }}
+            style={{ height: '85%', marginTop: 15 }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={(text) => setMarkdownText(text.text)}
           />
