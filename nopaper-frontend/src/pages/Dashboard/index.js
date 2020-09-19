@@ -32,7 +32,7 @@ function Dashboard(props) {
             notebooks && notebooks.map((notebook, index) => {
               
               return (
-                <Col span={8} style={{ }}>
+                <Col key={index} span={8} style={{ }}>
                   <div style={{ display: 'inline-flex', cursor: 'pointer' }}>
                     <div style={{ width: 15, height: 145, backgroundColor: colors[index % (colors.length)], borderTopLeftRadius: 8.5 }}>
                       <div style={{ marginTop: 137, width: 0, height: 0, borderLeft: '7.5px solid transparent', borderRight: '7.5px solid transparent', borderBottom: '8px solid white' }}></div>

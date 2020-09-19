@@ -8,7 +8,6 @@ import MarkdownEditor from '../src/pages/MarkdownEditor';
 
 
 const routes = [
-  { path: '/login', component: Login },
   { path: '/dashboard', component: Dashboard },
   { path: '/markdown-editor', component: MarkdownEditor }
 ]
@@ -29,6 +28,7 @@ const App = () => {
           <Redirect to={{ pathname: '/login' }} />
         )} />
         <Switch>
+          <Route path="/login" component={Login}/>
           {
             routes.map((route, index) => (
               <InternalRoute {...route} key={index} />
@@ -42,11 +42,28 @@ const App = () => {
 }
 
 function InternalRoute ({ component: Component, ...rest }) {
+  console.log('passou aq');
+
+  const token = sessionStorage.getItem('token');
+  console.log(token);
+
   return (
     <Route {...rest} 
-      render={props => (
-        <Component {...props} />
-      )}
+      render={props => {
+        if (token != null && token.length > 0) {
+          return (
+            <Component {...props} />
+          );
+        } else {
+          return (
+            <Redirect to={{
+              pathname: '/login'
+            }}
+            />
+          );
+        }
+        
+      }}
     />
   );
 }

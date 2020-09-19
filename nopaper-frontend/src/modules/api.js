@@ -56,6 +56,7 @@ async function login(email, password) {
       email,
       pwd: password
     });
+    return response;
   } catch (error) {
     console.log(error);
     throw new Error(error);
