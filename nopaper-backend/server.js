@@ -24,7 +24,7 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => {
-    console.log('congrats, problem solved');
+    console.log('Server is up');
   })
   .catch((err) => {
     console.log(`MongoDB connection error. Problem with ${err.message}`);
@@ -39,6 +39,4 @@ app.use('/', routes);
 
 //Servidor
 let porto = process.env.PORT || 8000;
-app.listen(porto, () => {
-  console.log('Servidor em execução no porto: ' + porto);
-});
+app.listen(porto, () => {});
