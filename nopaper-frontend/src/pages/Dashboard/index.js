@@ -1,6 +1,6 @@
-import React from 'react';
-import { Avatar, Badge, Input, Row, Col } from 'antd';
-import { StarOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import React, { useState } from 'react';
+import { Avatar, Badge, Input, Row, Col, Popover, Form, Button } from 'antd';
+import { StarOutlined, ArrowRightOutlined, PlusOutlined } from '@ant-design/icons';
 import { notebooks, colors } from './testData';
 import './styles.css';
 
@@ -14,6 +14,10 @@ const shadow = {
 }
 
 function Dashboard(props) {
+
+  const [popoverVisible, setPopoverVisible] = useState(false);
+  const [newNotebookName, setNewNotebookName] = useState('');
+
   return (
     <div style={{ height: '100vh' }}>
       
@@ -65,7 +69,40 @@ function Dashboard(props) {
           }
         </Row>
 
-
+        <Popover
+          title='Adicionar Caderno'
+          trigger='click'
+          placement='top'
+          visible={popoverVisible}
+          onVisibleChange={visible => setPopoverVisible(visible)}
+          content={
+            <>
+            <Form layout="vertical" className="user-modal-form" style={{ width: 200 }}>
+              <Form.Item label={<span>Nome do Caderno</span>}>
+                <Input 
+                  placeholder={'Escreva aqui'}
+                  onChange={(value) => {}}
+                  value={newNotebookName}
+                  style={{ width: 200 }}
+                />
+              </Form.Item>
+              <Form.Item>
+                <Button type='primary' style={{ width: 200 }} onClick={() => {
+                    setPopoverVisible(false)
+                  }}>
+                  Adicionar Novo Caderno
+                </Button>
+              </Form.Item>
+            </Form>
+            </>
+          }
+        
+        >
+          <div style={{ position: 'absolute', bottom: '5%', right: '2%', backgroundColor: '#2fa8d4', paddingLeft: 30, paddingRight: 40, paddingTop: 15, paddingBottom: 15, borderRadius: 30, cursor: 'pointer', display: 'flex' }}>
+            <PlusOutlined style={{ fontSize: 22, color: 'white' }} />
+            <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Adicionar Novo Caderno</span>
+          </div>
+        </Popover>  
 
         
         </div>
