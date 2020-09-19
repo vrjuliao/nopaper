@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input, Row, Col, Popover, Form, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { notebooks, colors } from './testData';
 import './styles.css';
 import TopHeader from '../../components/TopHeader';
+import Api from '../../modules/api';
 
 const { Search } = Input;
-
 
 const shadow = {
   WebkitBoxShadow: '10px 9px 52px -30px rgba(0,0,0,0.35)',
@@ -18,6 +18,19 @@ function Dashboard(props) {
 
   const [popoverVisible, setPopoverVisible] = useState(false);
   const [newNotebookName, setNewNotebookName] = useState('');
+
+  const loadApiData = async () => {
+    try {
+      const notebooks = await Api.getUserNotebooks();
+      console.log(notebooks);
+    } catch (err) {
+      console.log('Erro ao tentar encontrar os notebooks');
+    }
+  }
+
+  useEffect(() => {
+    loadApiData();
+  }, [])
 
   return (
     <div style={{ height: '100vh' }}>
