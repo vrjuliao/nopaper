@@ -78,17 +78,18 @@ function Dashboard(props) {
           content={
             <>
             <Form layout="vertical" className="user-modal-form" style={{ width: 200 }}>
-              <Form.Item label={<span>Nome do Caderno</span>}>
+              <Form.Item label={<span style={{ fontWeight: 'bold' }}>Nome do Caderno</span>}>
                 <Input 
                   placeholder={'Escreva aqui'}
-                  onChange={(value) => {}}
+                  onChange={(value) => setNewNotebookName(value.target.value)}
                   value={newNotebookName}
                   style={{ width: 200 }}
                 />
               </Form.Item>
               <Form.Item>
                 <Button type='primary' style={{ width: 200 }} onClick={() => {
-                    setPopoverVisible(false)
+                    setPopoverVisible(false);
+                    setNewNotebookName('');
                   }}>
                   Adicionar Novo Caderno
                 </Button>
