@@ -45,6 +45,9 @@ function MarkdownEditor(props) {
               setMarkdownText(text.text); 
             }}
           />
+
+          {/* <div dangerouslySetInnerHTML={{__html: mdParser.render(markdownText)}}/> */}
+
         </div>
       </div>
 
