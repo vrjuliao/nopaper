@@ -5,11 +5,13 @@ exports.login = function (req, res, next) {
   User.find({ email: req.body.email }, function (err, user) {
     if (err) return res.status(400).send('Usuario inválido!');
     if (user.length > 0 && user[0].pwd === req.body.pwd) {
-      var id = user[0]._id; // sitaxe correta?
+      var usr = user[0];
+      var id = usr._id;
+      console.log(usr);
       var token = jwt.sign({ userId: id }, process.env.SECRET, {
         expiresIn: 10800, // expires in 3h
       });
-      return res.json({ auth: true, token: token });
+      return res.json({ auth: true, token: token, data: { name: user[0].name } });
     }
 
     res.status(400).json({ message: 'Login inválido!' });
