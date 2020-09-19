@@ -2,6 +2,7 @@ import React from 'react';
 import { Avatar, Badge, Input, Row, Col } from 'antd';
 import { StarOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { notebooks, colors } from './testData';
+import './styles.css';
 
 const { Search } = Input;
 
@@ -37,7 +38,7 @@ function Dashboard(props) {
       </div>
 
       <div style={{ alignItems: 'center', height: '-webkit-calc(100% - 95px)', position: 'relative' }} >
-        <div style={{ backgroundColor: '#fff', marginLeft: '17.5%', width: '65%', minHeight: '100%', padding: 60 }}>
+        <div style={{ backgroundColor: '#fff', marginLeft: '17.5%', width: '65%', height: '100%', padding: 60, overflow: 'scroll' }}>
 
         <Row gutter={[16, 32]}>
           {
