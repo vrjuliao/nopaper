@@ -1,8 +1,10 @@
 import React from 'react';
-import { Avatar, Badge, Input } from 'antd';
+import { Avatar, Badge, Input, Row, Col } from 'antd';
 import { StarOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { notebooks, colors } from './testData';
 
 const { Search } = Input;
+
 
 const shadow = {
   WebkitBoxShadow: '10px 9px 52px -30px rgba(0,0,0,0.35)',
@@ -35,21 +37,35 @@ function Dashboard(props) {
       </div>
 
       <div style={{ alignItems: 'center', height: '-webkit-calc(100% - 95px)', position: 'relative' }} >
-        <div style={{ backgroundColor: '#fff', marginLeft: '17.5%', width: '65%', height: '100%', padding: 60 }}>
+        <div style={{ backgroundColor: '#fff', marginLeft: '17.5%', width: '65%', minHeight: '100%', padding: 60 }}>
 
-          <div style={{ display: 'inline-flex', cursor: 'pointer' }}>
-            <div style={{ width: 15, height: 145, backgroundColor: '#fedd0e', borderTopLeftRadius: 8.5 }}>
-              <div style={{ marginTop: 137, width: 0, height: 0, borderLeft: '7.5px solid transparent', borderRight: '7.5px solid transparent', borderBottom: '8px solid white' }}></div>
-            </div>
-            <div style={{ width: 90, height: 125, backgroundColor: 'rgba(97,110,126,0.75)', padding: 10, borderBottomRightRadius: 8.5, borderTopRightRadius: 8.5 }}>
-              <div style={{ backgroundColor: 'white', height: 15, marginTop: 7, borderRadius: 2 }}></div>
-              <div style={{ backgroundColor: 'white', height: 5, marginTop: 10, borderRadius: 1 }}></div>
-            </div>
-            <div style={{ paddingLeft: 18 }}>
-              <span style={{ fontSize: 21, fontWeight: 'bold', color: 'rgba(0,0,0,0.7)' }}>College</span>
-              <p style={{ fontSize: 14, color: 'rgba(0,0,0,0.4)', marginTop: 30 }}>Criado por<br/>Luiz Felipe<br/>18/09/2020</p>
-            </div>
-          </div>
+        <Row gutter={[16, 32]}>
+          {
+            notebooks && notebooks.map((notebook, index) => {
+              
+              return (
+                <Col span={8} style={{ }}>
+                  <div style={{ display: 'inline-flex', cursor: 'pointer' }}>
+                    <div style={{ width: 15, height: 145, backgroundColor: colors[index % (colors.length)], borderTopLeftRadius: 8.5 }}>
+                      <div style={{ marginTop: 137, width: 0, height: 0, borderLeft: '7.5px solid transparent', borderRight: '7.5px solid transparent', borderBottom: '8px solid white' }}></div>
+                    </div>
+                    <div style={{ width: 90, height: 125, backgroundColor: 'rgba(97,110,126,0.75)', padding: 10, borderBottomRightRadius: 8.5, borderTopRightRadius: 8.5 }}>
+                      <div style={{ backgroundColor: 'white', height: 15, marginTop: 7, borderRadius: 2 }}></div>
+                      <div style={{ backgroundColor: 'white', height: 5, marginTop: 10, borderRadius: 1 }}></div>
+                    </div>
+                    <div style={{ paddingLeft: 10, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', height: 125, width: 120 }}>
+                      <span style={{ fontSize: 18, fontWeight: 'bold', color: 'rgba(0,0,0,0.7)', overflow: 'hidden', display: 'inline-block', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', textOverflow: 'ellipsis' }}>{notebook.name}</span>
+                      <p style={{ fontSize: 12, color: 'rgba(0,0,0,0.4)', marginTop: 30 }}>Criado por<br/>{notebook.author}<br/>{notebook.createdAt}</p>
+                    </div>
+                  </div>
+                </Col>
+              );
+            })
+          }
+        </Row>
+
+
+
         
         </div>
       </div>
