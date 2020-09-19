@@ -26,7 +26,7 @@ function MarkdownEditor(props) {
               <Input placeholder="Nome da Nota" bordered={false} style={{ paddingLeft: 0, fontSize: 25, borderBottom: '1px solid #2fa8d4' }} /> 
             </div>
 
-            <div style={{ alignSelf: 'flex-end', display: 'flex', float: 'right' }}>
+            <div style={{ alignSelf: 'flex-end', display: 'flex' , marginLeft: 'auto', marginRight: 0 }}>
               <div style={{ backgroundColor: 'rgba(0,0,0,0.2)', paddingLeft: 30, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
                 <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Cancelar</span>
               </div>
