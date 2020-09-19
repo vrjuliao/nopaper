@@ -41,7 +41,9 @@ function MarkdownEditor(props) {
             value={markdownText}
             style={{ height: '85%', marginTop: 15 }}
             renderHTML={(text) => mdParser.render(text)}
-            onChange={(text) => setMarkdownText(text.text)}
+            onChange={(text) => {
+              setMarkdownText(text.text); 
+            }}
           />
         </div>
       </div>
