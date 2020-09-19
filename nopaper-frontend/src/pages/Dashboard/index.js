@@ -5,15 +5,16 @@ import { StarOutlined, ArrowRightOutlined } from '@ant-design/icons';
 const { Search } = Input;
 
 const shadow = {
-  WebkitBoxShadow: '10px 9px 52px -30px rgba(0,0,0,0.81)',
-  MozBoxShadow: '10px 9px 52px -30px rgba(0,0,0,0.81)',
-  boxShadow: '10px 9px 52px -30px rgba(0,0,0,0.81)'
+  WebkitBoxShadow: '10px 9px 52px -30px rgba(0,0,0,0.35)',
+  MozBoxShadow: '10px 9px 52px -30px rgba(0,0,0,0.35)',
+  boxShadow: '10px 9px 52px -30px rgba(0,0,0,0.35)'
 }
 
 function Dashboard(props) {
   return (
-    <div>
-      <div style={{ backgroundColor: 'white', width: '100vw', height: 95, ...shadow, display: 'flex', flex: 3,  alignItems: 'center', padding: 20 }}>
+    <div style={{ height: '100vh' }}>
+      
+      <div style={{ backgroundColor: 'white', width: '100vw', height: 95, ...shadow, display: 'flex', flex: 3,  alignItems: 'center', padding: 20, position: 'relative', zIndex: 1 }}>
         <div style={{ flex: 2 }}>
           <img src={require('../../assets/icons/icon_long.jpeg')} style={{ width: 200, height: 40 }} />
           <Avatar style={{ backgroundColor: 'greenyellow', verticalAlign: 'middle', marginLeft: 40, fontSize: 30, marginBottom: 5 }} size={55}>L</Avatar>
@@ -32,6 +33,13 @@ function Dashboard(props) {
           </div>
         </div>
       </div>
+
+      <div style={{ alignItems: 'center', height: '-webkit-calc(100% - 95px)', position: 'relative' }} >
+        <div style={{ backgroundColor: '#fff', marginLeft: '17.5%', width: '65%', height: '100%' }}>
+          <span>Helloo</span>
+        </div>
+      </div>
+
     </div>
   );
 }
