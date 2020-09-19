@@ -4,11 +4,13 @@ import { hot } from 'react-hot-loader';
 
 import Login from '../src/pages/Login';
 import Dashboard from '../src/pages/Dashboard';
+import MarkdownEditor from '../src/pages/MarkdownEditor';
 
 
 const routes = [
   { path: '/login', component: Login },
-  { path: '/dashboard', component: Dashboard }
+  { path: '/dashboard', component: Dashboard },
+  { path: '/markdown-editor', component: MarkdownEditor }
 ]
 
 const App = () => {
