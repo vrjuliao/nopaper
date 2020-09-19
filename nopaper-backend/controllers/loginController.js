@@ -7,7 +7,6 @@ exports.login = function (req, res, next) {
     if (user.length > 0 && user[0].pwd === req.body.pwd) {
       var usr = user[0];
       var id = usr._id;
-      console.log(usr);
       var token = jwt.sign({ userId: id }, process.env.SECRET, {
         expiresIn: 10800, // expires in 3h
       });
@@ -19,8 +18,6 @@ exports.login = function (req, res, next) {
 };
 
 exports.register = function (req, res) {
-  console.log(req.body);
-
   let user = new User({
     email: req.body.email,
     name: req.body.nome,
