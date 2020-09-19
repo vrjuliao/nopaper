@@ -1,0 +1,29 @@
+#page-notes {
+    width: 100vw;
+    height: 100vh;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ed2b58;
+}
+
+/* .menu-container Button {
+    background-color: white;
+} */
+
+.menu-container p {
+    display: flex;
+    align-self: end;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: white;
+}
+
+.menu-container p + Button {
+    background-color: darkblue;
+    margin-left: 100px;
+}
