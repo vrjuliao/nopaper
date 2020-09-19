@@ -42,11 +42,7 @@ const App = () => {
 }
 
 function InternalRoute ({ component: Component, ...rest }) {
-  console.log('passou aq');
-
   const token = sessionStorage.getItem('token');
-  console.log(token);
-
   return (
     <Route {...rest} 
       render={props => {
