@@ -33,7 +33,6 @@ exports.new = function (req, res) {
   });
 };
 
-
 exports.delete = async (req, res) => {
   try {
     const notebook = await Notebook.findById(req.query.id);
@@ -80,7 +79,7 @@ exports.clone = async (req, res) => {
 
 exports.update = async (req, res) => {
   try {
-    await Notebook.findOneAndUpdate({ _id: req.body.notebookId, userId: req.body.userId }, { title: req.body.title });
+    await Notebook.findOneAndUpdate({ _id: req.body.notebookId, userId: req.body.userId }, { name: req.body.name });
     return res.send('Notebook atualizada com sucesso!');
   } catch (err) {
     return res.status(400).send('Notebook id inválido.');
