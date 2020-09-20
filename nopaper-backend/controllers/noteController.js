@@ -3,7 +3,6 @@ var Note = require('../models/noteModel');
 
 exports.getNotesById = async (req, res) => {
   try {
-    console.log(req.query.id);
     await Notebook.find({ _id: req.query.id, userId: req.body.userId });
     const notes = await Note.find({ notebookId: req.query.id }, [
       '_id',
@@ -12,7 +11,6 @@ exports.getNotesById = async (req, res) => {
       'notebookId',
       'createdAt',
     ]).sort({ updatedAt: -1 });
-    console.log(notes);
     return res.send(notes);
   } catch (err) {
     return res.status(400).send('Notebook id inválido.');
