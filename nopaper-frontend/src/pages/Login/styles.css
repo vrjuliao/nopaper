@@ -3,7 +3,11 @@
     height: 100vh;
 }
 
-.logo-container {
+#page-login .logo-container {
+    border-radius: 11px solid black;
+}
+
+.logo-container .text-container{
     flex-direction: column;
     line-height: initial;
     
@@ -11,18 +15,27 @@
     text-align: left;
     align-items: center;
     align-content: center;
-    
+    align-self: center;    
+}
+
+.logo-container .text-container span{
+    text-align: center;
 }
 
 .title {
     color: white;
     font-size: 50px;
     font-weight: bold;
+    display: flex;
+    text-align: center;
+    align-content: center;
+    margin-left: 10px;
+    width: 100%;
 }
 
-.text-container {
+.text-container #text{
     align-self: center;
-    padding-right: 50px;
+    width: 100%;
 }
 
 .card {
@@ -65,15 +78,6 @@
         color: white;
         font-size: 80px;
         font-weight: bold;
-    }
-
-    .logo-container img{
-        margin-bottom: 0px;
-        align-self: initial;
-    }
-
-    .logo-container h1{
-        /* align-self: center; */
     }
 
     .card {
