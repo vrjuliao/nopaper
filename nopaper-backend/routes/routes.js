@@ -26,7 +26,12 @@ const middleware = require('../middleware/authentication');
 router.use('/', middleware.authGuard);
 router.get('/notebook', notebook_controller.find);
 router.post('/notebook/new', notebook_controller.new);
+router.post('/notebook/clone', notebook_controller.clone);
+router.put('/notebook/delete', notebook_controller.delete);
 router.post('/note/new', note_controller.setNewNote);
 router.get('/note/get', note_controller.getNotesById);
+router.put('/note/update', note_controller.updateNote);
+router.put('/note/delete', note_controller.deleteNote);
+router.post('/note/clone', note_controller.cloneNote);
 
 module.exports = router;

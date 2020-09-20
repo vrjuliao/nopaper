@@ -18,7 +18,6 @@ function Login(props) {
     <div id='page-login' >
       
       <div className="logo-container">
-        {/* <img src='https://i.vimeocdn.com/portrait/25736037_300x300' width='80px' alt="Logo"/> */}
         <div className="text-container">
           <span className="title" >{'Nopaper.'}</span>
           <p style={{ color: 'white', fontSize: 40,  }}>Cadernos colaborativos</p>
@@ -36,7 +35,7 @@ function Login(props) {
           }}>
 
             <LoginForm onClickRegister = { () => slider.current.next()} />
-            <RegisterForm onClickLogin = { () => slider.current.prev()} />
+            <RegisterForm onClickLogin = { () => slider.current.prev()}/>
 
               
             
