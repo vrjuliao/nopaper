@@ -29,5 +29,6 @@ router.post('/notebook/new', notebook_controller.new);
 router.post('/note/new', note_controller.setNewNote);
 router.get('/note/get', note_controller.getNotesById);
 router.put('/note/update', note_controller.updateNote);
+router.put('/note/delete', note_controller.deleteNote);
 
 module.exports = router;
