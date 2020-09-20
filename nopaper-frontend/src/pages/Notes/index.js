@@ -23,6 +23,7 @@ function Notes(props){
   const [notes, setNotes] = useState([]);
   const [newNotebookName, setNewNotebookName] = useState('');
   const [popoverVisible, setPopoverVisible] = useState(false);
+  const [notebookName, setNotebookName] = useState(currentNotebook.name);
 
   useEffect(() => {
     loadApiData();
@@ -80,6 +81,7 @@ function Notes(props){
         description: 'Nota editada com sucesso!',
         message: 'Pronto!'
       });
+      setNotebookName(newNotebookName);
     } catch (err) {
       notification.error({
         description: 'Erro ao editar o nome',
@@ -117,12 +119,11 @@ function Notes(props){
               <Avatar style={{ backgroundColor: 'greenyellow', fontSize: 75, marginBottom: '20px'}} size={130}>{username[0]}</Avatar>
             </div>
             
-            <span style={{ fontSize: 20, fontWeight: 'bold', color: 'rgba(0,0,0,0.8)' }}>{currentNotebook.name}</span>
+            <span style={{ fontSize: 20, fontWeight: 'bold', color: 'rgba(0,0,0,0.8)' }}>{notebookName}</span>
             <span style={{ fontSize: 20, color: 'rgba(0,0,0,0.4)' }}>{username}</span>
             <span style={{ fontSize: 20, color: 'rgba(0,0,0,0.4)' }}>Criado em {currentNotebook.createdAt}</span>
 
             <div style={{ alignContent: 'center', justifyContent: 'space-around', display: 'flex', marginTop: 15 }} >
-              
               
             <Popover
                 title='Editar nome do Caderno'
