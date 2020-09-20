@@ -1,0 +1,1 @@
+const express=require("express"),favicon=require("express-favicon"),path=require("path"),port=process.env.PORT||8080,app=express();app.use(express.static(__dirname)),app.use(express.static(path.join(__dirname,"build"))),app.get("/ping",function(e,p){return p.send("pong")}),app.get("/*",function(e,p){p.sendFile(path.join(__dirname,"build","index.html"))}),app.listen(port);

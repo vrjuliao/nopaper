@@ -1,0 +1,1 @@
+const mongoose=require("mongoose"),{ObjectID:ObjectID}=require("mongodb"),Schema=mongoose.Schema;let NotebookSchema=new Schema({name:{type:String,required:!0,max:100},description:{type:String,required:!1,max:500},userId:{type:ObjectID,required:!0}},{timestamps:!0});module.exports=mongoose.model("Notebook",NotebookSchema);

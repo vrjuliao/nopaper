@@ -1,0 +1,1 @@
+function enviar(){var e=new FormData,n=document.getElementById("arquivoInput").files[0];e.append("file",n),e.append("body",JSON.stringify({nome:"João"}));var t=new XMLHttpRequest;t.onreadystatechange=function(){if(4==t.readyState){var e=document.getElementById("mensagem"),n=t.responseText;e.innerHTML+=n}},t.open("POST","http://localhost:8000/upload"),t.send(e)}

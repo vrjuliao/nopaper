@@ -1,0 +1,1 @@
+var User=require("../models/userModel");exports.all=function(e,s){User.find({},["username","email","name"],function(e,n){return e?s.status(400).send("Usuários não obtidos"):s.send(n)})};

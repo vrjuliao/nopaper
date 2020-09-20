@@ -1,0 +1,1 @@
+var jwt=require("jsonwebtoken");exports.authGuard=function(e,t,s){var r=e.headers["x-access-token"];if(!r)return t.status(401).json({auth:!1,message:"No token provided."});jwt.verify(r,process.env.SECRET,function(r,a){if(r)return t.status(500).json({auth:!1,message:"Failed to authenticate token."});e.body.userId=a.userId,s()})};

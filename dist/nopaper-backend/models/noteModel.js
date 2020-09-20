@@ -1,0 +1,1 @@
+const mongoose=require("mongoose"),{ObjectID:ObjectID}=require("mongodb"),Schema=mongoose.Schema;let NoteSchema=new Schema({title:{type:String,required:!0,max:100},markdown:{type:String,required:!0},notebookId:{type:ObjectID,required:!0}},{timestamps:!0});module.exports=mongoose.model("Note",NoteSchema);

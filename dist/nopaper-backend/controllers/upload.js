@@ -1,0 +1,1 @@
+var fs=require("fs");module.exports=function(e,s){s.setHeader("Access-Control-Allow-Origin","*");e.files.file;var o=e.files.file.path,i="./uploads/"+e.files.file.name;fs.rename(o,i,function(e){e&&s.status(500).json({error:e}),s.json({message:"enviado com sucesso.",file:i})})};

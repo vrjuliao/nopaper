@@ -1,0 +1,1 @@
+const mongoose=require("mongoose"),Schema=mongoose.Schema;let SmartphoneSchema=new Schema({nome:{type:String,required:!0,max:100},marca:{type:Number,required:!0}},{timestamps:!0});module.exports=mongoose.model("Smartphone",SmartphoneSchema);
