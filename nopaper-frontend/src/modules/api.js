@@ -109,11 +109,40 @@ async function createNewNotebook(name, description = "") {
   }
 }
 
+async function createNewNote(title, markdown, notebookId){
+  try {
+    await post("/note/new" , {
+      title,
+      markdown,
+      notebookId
+    });
+  } catch (err) {
+    throw new Error(err.message || 'Erro');
+  }
+}
+
+async function getUserNotes(notebookId){
+  try {
+    const notes = await get("/note/get", {
+      notebookId
+    });
+    return notes;
+  } catch (err) {
+    throw new Error(err.message || 'Erro');
+  }
+}
+
+//new note
+//list note
+//crair campo username
+
 export default {
   login,
   register,
   getUserNotebooks,
-  createNewNotebook
+  createNewNotebook,
+  createNewNote,
+  getUserNotes
 };
 
 
