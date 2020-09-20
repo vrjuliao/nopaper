@@ -98,10 +98,22 @@ async function getUserNotebooks() {
   }
 }
 
+async function createNewNotebook(name, description = "") {
+  try {
+    await post("/notebook/new" , {
+      name,
+      description
+    });
+  } catch (err) {
+    throw new Error(err.message || 'Erro');
+  }
+}
+
 export default {
   login,
   register,
-  getUserNotebooks
+  getUserNotebooks,
+  createNewNotebook
 };
 
 

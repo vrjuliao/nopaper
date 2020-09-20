@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Row, Col, Popover, Form, Button, Spin } from 'antd';
+import { Input, Row, Col, Popover, Form, Button, Spin, notification } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { notebooks as testNotebooks, colors } from './testData';
 import './styles.css';
@@ -16,6 +16,7 @@ const shadow = {
 
 function Dashboard(props) {
 
+  const username = sessionStorage.getItem('username');
   const [popoverVisible, setPopoverVisible] = useState(false);
   const [newNotebookName, setNewNotebookName] = useState('');
   const [loading, setLoading] = useState(false);
@@ -38,6 +39,22 @@ function Dashboard(props) {
     }
   }
 
+  const createNotebook = async () => {
+    try {
+      await Api.createNewNotebook(newNotebookName);
+      notification.success({
+        description: 'Notebook criado com sucesso!',
+        message: 'Pronto!'
+      });
+      loadApiData();
+    } catch (err) {
+      notification.error({
+        description: 'Erro ao criar notebook.',
+        message: 'Oopss...'
+      });
+    }
+  }
+
   return (
     <div style={{ height: '100vh' }}>
       
@@ -51,7 +68,7 @@ function Dashboard(props) {
           <Row gutter={[16, 32]}>
             {
               notebooks && notebooks.map((notebook, index) => {
-                
+                console.log(notebook);
                 return (
                   <Col key={index} span={8} style={{ }}>
                     <div style={{ display: 'inline-flex', cursor: 'pointer' }}>
@@ -64,7 +81,7 @@ function Dashboard(props) {
                       </div>
                       <div style={{ paddingLeft: 10, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', height: 125, width: 120 }}>
                         <span style={{ fontSize: 18, fontWeight: 'bold', color: 'rgba(0,0,0,0.7)', overflow: 'hidden', display: 'inline-block', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', textOverflow: 'ellipsis' }}>{notebook.name}</span>
-                        <p style={{ fontSize: 12, color: 'rgba(0,0,0,0.4)', marginTop: 30 }}>Criado por<br/>{notebook.author}<br/>{notebook.createdAt}</p>
+                        <p style={{ fontSize: 12, color: 'rgba(0,0,0,0.4)', marginTop: 30 }}>Criado por<br/>{notebook.author || username }<br/>{notebook.createdAt}</p>
                       </div>
                     </div>
                   </Col>
@@ -94,6 +111,7 @@ function Dashboard(props) {
               <Form.Item>
                 <Button type='primary' style={{ width: 200 }} onClick={() => {
                     setPopoverVisible(false);
+                    createNotebook();
                     setNewNotebookName('');
                   }}>
                   Adicionar Novo Caderno
