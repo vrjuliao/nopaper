@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Avatar, Card, Button, Tag, Divider, Spin, notification } from 'antd';
+import { Avatar, Button, Tag, Divider, Spin, notification, Popover, Form, Input } from 'antd';
 import { PlusOutlined, ArrowLeftOutlined, CopyOutlined, DeleteOutlined, FormOutlined } from '@ant-design/icons'
 import 'antd/dist/antd.css';
 import { useHistory } from "react-router-dom";
@@ -21,6 +21,8 @@ function Notes(props){
   const username = sessionStorage.getItem('username');
   const [loading, setLoading] = useState(false);
   const [notes, setNotes] = useState([]);
+  const [newNotebookName, setNewNotebookName] = useState('');
+  const [popoverVisible, setPopoverVisible] = useState(false);
 
   useEffect(() => {
     loadApiData();
@@ -70,6 +72,18 @@ function Notes(props){
     }
   }
 
+  const updateNotebookName = async () => {
+    try {
+      await Api.editNotebookName(currentNotebook._id);
+      loadApiData();
+    } catch (err) {
+      notification.error({
+        description: 'Erro ao excluir nota.',
+        message: 'Oopss...'
+      });
+    }
+  }
+
   return(
     <div id='page-notes'>
       
@@ -104,12 +118,44 @@ function Notes(props){
             <span style={{ fontSize: 20, color: 'rgba(0,0,0,0.4)' }}>Criado em {currentNotebook.createdAt}</span>
 
             <div style={{ alignContent: 'center', justifyContent: 'space-around', display: 'flex', marginTop: 15 }} >
-              <div style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
-                <Button 
-                  style={{ border: '0px' }}
-                  icon={<FormOutlined style={{ color: '#2fa8d4', fontSize: 20, marginTop: 4 }} />} 
-                />
-              </div>
+              
+              
+            <Popover
+                title='Editar nome do Caderno'
+                trigger='click'
+                placement='top'
+                visible={popoverVisible}
+                onVisibleChange={visible => setPopoverVisible(visible)}
+                content={
+                  <>
+                  <Form layout="vertical" className="user-modal-form" style={{ width: 200 }}>
+                    <Form.Item label={<span style={{ fontWeight: 'bold' }}>Nome do Caderno</span>}>
+                      <Input 
+                        placeholder={'Escreva aqui'}
+                        onChange={(value) => setNewNotebookName(value.target.value)}
+                        value={newNotebookName}
+                        style={{ width: 200 }}
+                      />
+                    </Form.Item>
+                    <Form.Item>
+                      <Button type='primary' style={{ width: 200 }} onClick={() => {
+                          setPopoverVisible(false);
+                          setNewNotebookName('');
+                        }}>
+                        Editar Caderno
+                      </Button>
+                    </Form.Item>
+                  </Form>
+                  </>
+                }
+              >
+                <div style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
+                  <Button 
+                    style={{ border: '0px' }}
+                    icon={<FormOutlined style={{ color: '#2fa8d4', fontSize: 20, marginTop: 4 }} />} 
+                  />
+                </div>
+              </Popover>
 
               <div style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
                 <Button 
@@ -124,8 +170,8 @@ function Notes(props){
                   icon={<DeleteOutlined style={{ color: '#ff584f', fontSize: 20, marginTop: 4 }}/>} 
                 />
               </div>
+        
             </div>
-
           </div>
 
           <div style={{ flex: 2, paddingLeft: 20 }}>

@@ -158,6 +158,16 @@ async function deleteNote(noteId, notebookId) {
   }
 }
 
+async function editNotebookName(notebookId) {
+  try {
+    await patch("/notebook/update", {
+      notebookId
+    });
+  } catch (err) {
+    throw new Error(err.message || 'Erro');
+  }
+}
+
 //new note
 //list note
 //crair campo username
@@ -170,7 +180,8 @@ export default {
   createNewNote,
   getUserNotes,
   deleteNotebook,
-  deleteNote
+  deleteNote,
+  editNotebookName
 };
 
 
