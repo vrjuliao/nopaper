@@ -68,7 +68,6 @@ function Dashboard(props) {
           <Row gutter={[16, 32]}>
             {
               notebooks && notebooks.map((notebook, index) => {
-                console.log(notebook);
                 return (
                   <Col key={index} span={8} style={{ }}>
                     <div style={{ display: 'inline-flex', cursor: 'pointer' }}>
