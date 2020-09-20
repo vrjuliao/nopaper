@@ -26,7 +26,6 @@ exports.new = function (req, res) {
 exports.delete = (req, res) => {
   Notebook.findById(req.body.id, (err, success) => {
     if (err) return res.status(400).send('Id invalido.');
-    console.log('!' + success.userId + '!' + req.body.userId + '!');
     if (success.userId.toString() !== req.body.userId)
       return res.status(403).send('Proibido. Notebook não te pertence.');
     success.deleteOne((err) => {
