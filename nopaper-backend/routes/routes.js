@@ -26,6 +26,7 @@ const middleware = require('../middleware/authentication');
 router.use('/', middleware.authGuard);
 router.get('/notebook', notebook_controller.find);
 router.post('/notebook/new', notebook_controller.new);
+router.post('/notebook/clone', notebook_controller.clone);
 router.put('/notebook/delete', notebook_controller.delete);
 router.post('/note/new', note_controller.setNewNote);
 router.get('/note/get', note_controller.getNotesById);
