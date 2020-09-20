@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Avatar, Card, Button, Tag, Divider, Spin } from 'antd';
 import { PlusOutlined, ArrowLeftOutlined, CopyOutlined, DeleteOutlined, FormOutlined } from '@ant-design/icons'
 import 'antd/dist/antd.css';
+import { useHistory } from "react-router-dom";
 
 import Api from '../../modules/api';
 import TopHeader from '../../components/TopHeader';
@@ -15,7 +16,9 @@ const shadow = {
 }
 
 function Notes(props){
-
+  const history = useHistory();
+  const currentNotebook = props.location.state.notebook;
+  const username = sessionStorage.getItem('username');
   const [loading, setLoading] = useState(false);
   const [notes, setNotes] = useState([]);
 
@@ -25,8 +28,6 @@ function Notes(props){
 
   const loadApiData = async () => {
     setLoading(true);
-    const currentNotebook = props.location.state.notebook;
-    console.log(currentNotebook._id);
     try {
       const notess = await Api.getUserNotes(currentNotebook._id);
       setNotes(notess);
@@ -37,22 +38,6 @@ function Notes(props){
     }
   }
 
-
-  const notebook = {
-    id: 10,
-    name: 'vai passar pro matheus o tp de alg2',
-    user: 'luizin',
-    date: '22/05/2550',
-    note: [
-      'alooouasdasdsadasdas',
-      'meeeu',
-      'booom',
-      'alooouasdasdsadasdas'
-    ]
-  }
-  
-  
-
   return(
     <div id='page-notes'>
       
@@ -62,12 +47,12 @@ function Notes(props){
         
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
 
-          <div style={{ alignItems: 'center', backgroundColor: '#2fa8d4', paddingLeft: 20, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
+          <div onClick={() => history.push("/dashboard")} style={{ alignItems: 'center', backgroundColor: '#2fa8d4', paddingLeft: 20, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
             <ArrowLeftOutlined style={{ fontSize: 15, color: 'white' }} />
             <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Voltar</span>
           </div>
 
-          <div style={{ alignItems: 'center', backgroundColor: '#2fa8d4', paddingLeft: 20, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
+          <div onClick={() => history.push("/markdown-editor") } style={{ alignItems: 'center', backgroundColor: '#2fa8d4', paddingLeft: 20, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
             <PlusOutlined style={{ fontSize: 15, color: 'white' }} />
             <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Criar nota</span>
           </div>
@@ -79,12 +64,12 @@ function Notes(props){
           <div style={{ textAlign: 'left', flex: 1,  padding: 20, display: 'flex', flexDirection: 'column' }}>
             
             <div style={{ alignContent: 'center', justifyContent: 'center', display: 'flex' }}>
-              <Avatar style={{ backgroundColor: 'greenyellow', fontSize: 75, marginBottom: '20px'}} size={130}>L</Avatar>
+              <Avatar style={{ backgroundColor: 'greenyellow', fontSize: 75, marginBottom: '20px'}} size={130}>{username[0]}</Avatar>
             </div>
             
-            <span style={{ fontSize: 20, fontWeight: 'bold', color: 'rgba(0,0,0,0.8)' }}>{notebook.name}</span>
-            <span style={{ fontSize: 20, color: 'rgba(0,0,0,0.4)' }}>{notebook.user}</span>
-            <span style={{ fontSize: 20, color: 'rgba(0,0,0,0.4)' }}>Criado em {notebook.date}</span>
+            <span style={{ fontSize: 20, fontWeight: 'bold', color: 'rgba(0,0,0,0.8)' }}>{currentNotebook.name}</span>
+            <span style={{ fontSize: 20, color: 'rgba(0,0,0,0.4)' }}>{username}</span>
+            <span style={{ fontSize: 20, color: 'rgba(0,0,0,0.4)' }}>Criado em {currentNotebook.createdAt}</span>
 
             <div style={{ alignContent: 'center', justifyContent: 'space-around', display: 'flex', marginTop: 15 }} >
               <div style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
