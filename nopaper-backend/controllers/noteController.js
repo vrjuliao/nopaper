@@ -32,7 +32,7 @@ exports.setNewNote = async (req, res) => {
       if (err) return res.status(501).send('Não foi possivel criar nota.');
       return res.send('Nota criada com sucesso!');
     });
-  } catch (err){
+  } catch (err) {
     return res.status(400).send('Notebook id inválido.');
   }
 };
@@ -43,24 +43,24 @@ exports.updateNote = async (req, res) => {
     try {
       await Note.findByIdAndUpdate(req.body.noteId, { title: req.body.title, markdown: req.body.markdown });
       return res.send('Nota atualizada com sucesso!');
-    } catch (err){
+    } catch (err) {
       return res.status(400).send('Note id inválido.');
     }
-  } catch (err){
+  } catch (err) {
     return res.status(400).send('Notebook id inválido.');
   }
 };
 
 exports.deleteNote = async (req, res) => {
   try {
-    await Notebook.find({ _id: req.query.notebookId, userId: req.body.userId });
+    await Notebook.find({ _id: req.query.notebookId, userId: req.query.userId });
     try {
       await Note.findByIdAndDelete(req.query.noteId);
       res.send('Nota deletada com sucesso!');
-    } catch (err){
+    } catch (err) {
       return res.status(400).send('Note id inválido.');
     }
-  } catch (err){
+  } catch (err) {
     return res.status(400).send('Notebook id inválido.');
   }
 };

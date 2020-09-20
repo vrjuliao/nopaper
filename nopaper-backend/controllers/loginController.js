@@ -3,7 +3,6 @@ var User = require('../models/userModel');
 
 exports.login = function (req, res, next) {
   User.find({ email: req.body.email }, function (err, user) {
-    console.log(user);
     if (err) return res.status(400).send('Usuário inválido!');
     if (user.length > 0 && user[0].pwd === req.body.pwd) {
       var usr = user[0];
@@ -23,7 +22,7 @@ exports.register = function (req, res) {
     email: req.body.email,
     name: req.body.name,
     pwd: req.body.pwd,
-    username: req.body.username
+    username: req.body.username,
   });
 
   user.save(function (err) {
