@@ -53,9 +53,9 @@ exports.updateNote = async (req, res) => {
 
 exports.deleteNote = async (req, res) => {
   try {
-    await Notebook.find({ _id: req.body.notebookId, userId: req.body.userId });
+    await Notebook.find({ _id: req.query.notebookId, userId: req.body.userId });
     try {
-      await Note.findByIdAndDelete(req.body.noteId);
+      await Note.findByIdAndDelete(req.query.noteId);
       res.send('Nota deletada com sucesso!');
     } catch (err){
       return res.status(400).send('Note id inválido.');

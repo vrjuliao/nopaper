@@ -143,7 +143,17 @@ async function deleteNotebook(notebookId) {
       id: notebookId
     });
   } catch (err) {
-    console.log("Passou aq");
+    throw new Error(err.message || 'Erro');
+  }
+}
+
+async function deleteNote(noteId, notebookId) {
+  try {
+    await del("/note/delete", {
+      notebookId,
+      noteId
+    });
+  } catch (err) {
     throw new Error(err.message || 'Erro');
   }
 }
@@ -159,7 +169,8 @@ export default {
   createNewNotebook,
   createNewNote,
   getUserNotes,
-  deleteNotebook
+  deleteNotebook,
+  deleteNote
 };
 
 

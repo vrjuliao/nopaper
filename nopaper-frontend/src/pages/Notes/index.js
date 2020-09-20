@@ -54,6 +54,22 @@ function Notes(props){
     }
   }
 
+  const deleteNote = async (noteId) => {
+    try {
+      await Api.deleteNote(noteId, currentNotebook._id);
+      loadApiData();
+      notification.success({
+        description: 'Nota excluido com sucesso!',
+        message: 'Pronto!'
+      });
+    } catch(err) {
+      notification.error({
+        description: 'Erro ao excluir nota.',
+        message: 'Oopss...'
+      });
+    }
+  }
+
   return(
     <div id='page-notes'>
       
@@ -136,7 +152,7 @@ function Notes(props){
                           />
                         </div>
 
-                        <div style={{ padding: 0, border: '0px solid #ff584f' }}>
+                        <div onClick={() => deleteNote(note._id)} style={{ padding: 0, border: '0px solid #ff584f' }}>
                           <Button 
                             style={{ border: '0px', backgroundColor: 'transparent' }}
                             icon={<DeleteOutlined style={{ color: '#ff584f', fontSize: 17, marginTop: 4 }}/>} 
