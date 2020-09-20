@@ -30,9 +30,23 @@ exports.setNewNote = async (req, res) => {
     });
     note.save((err) => {
       if (err) return res.status(501).send('Não foi possivel criar nota.');
-      return res.send('Nota criada com sucesso.');
+      return res.send('Nota criada com sucesso!');
     });
   } catch {
+    return res.status(400).send('Notebook id inválido.');
+  }
+};
+
+exports.updateNote = async (req, res) => {
+  try {
+    await Notebook.find({ _id: req.body.notebookId, userId: req.body.userId });
+    try {
+      await Note.findByIdAndUpdate(req.body.noteId, { title: req.body.title, markdown: req.body.markdown });
+      res.send('Nota atualizada com sucesso!');
+    } catch {
+      return res.status(400).send('Note id inválido.');
+    }
+  } catch (err) {
     return res.status(400).send('Notebook id inválido.');
   }
 };
