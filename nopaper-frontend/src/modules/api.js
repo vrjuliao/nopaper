@@ -183,6 +183,15 @@ async function editNote(noteId, notebookId, title, markdown) {
   }
 }
 
+async function getUserList() {
+  try {
+    const userList = await get("/users");
+    return userList;
+  } catch (err) {
+    throw new Error(err.message || 'Erro');
+  }
+}
+
 //new note
 //list note
 //crair campo username
@@ -197,7 +206,8 @@ export default {
   deleteNotebook,
   deleteNote,
   editNotebookName,
-  editNote
+  editNote,
+  getUserList
 };
 
 
