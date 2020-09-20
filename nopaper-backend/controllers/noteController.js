@@ -42,7 +42,7 @@ exports.updateNote = async (req, res) => {
     await Notebook.find({ _id: req.body.notebookId, userId: req.body.userId });
     try {
       await Note.findByIdAndUpdate(req.body.noteId, { title: req.body.title, markdown: req.body.markdown });
-      res.send('Nota atualizada com sucesso!');
+      return res.send('Nota atualizada com sucesso!');
     } catch {
       return res.status(400).send('Note id inválido.');
     }
@@ -63,4 +63,19 @@ exports.deleteNote = async (req, res) => {
   } catch {
     return res.status(400).send('Notebook id inválido.');
   }
+};
+
+exports.cloneNote = (req, res) => {
+  Note.findById(req.body.noteId, (err, success) => {
+    if (err) return res.status(400).send('Note id inválido.');
+    var nova = new Note({
+      title: success.title + 'Copy',
+      markdown: success.markdown,
+      notebookId: req.body.notebookId,
+    });
+    nova.save((err) => {
+      if (err) return res.status(501).send('Não foi copiar criar nota.');
+      return res.send('Nota clonada com sucesso!');
+    });
+  });
 };
