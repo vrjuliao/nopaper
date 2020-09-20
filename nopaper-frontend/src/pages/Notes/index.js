@@ -184,7 +184,10 @@ function Notes(props){
                       <span style={{ fontSize: 18 }}>{note.title}</span>
 
                       <div style={{ alignContent: 'center', justifyContent: 'space-around', display: 'flex' }} >
-                        <div style={{ padding: 0, border: '0px solid #2fa8d4' }}>
+                        <div onClick={() => history.push({
+                          pathname: '/markdown-editor',
+                          state: { note }
+                        })} style={{ padding: 0, border: '0px solid #2fa8d4' }}>
                           <Button 
                             style={{ border: '0px', backgroundColor: 'transparent' }}
                             icon={<FormOutlined style={{ color: '#2fa8d4', fontSize: 17, marginTop: 4 }} />} 
@@ -199,7 +202,7 @@ function Notes(props){
                         </div>
 
                         <div onClick={() => deleteNote(note._id)} style={{ padding: 0, border: '0px solid #ff584f' }}>
-                          <Button 
+                          <Button
                             style={{ border: '0px', backgroundColor: 'transparent' }}
                             icon={<DeleteOutlined style={{ color: '#ff584f', fontSize: 17, marginTop: 4 }}/>} 
                           />
