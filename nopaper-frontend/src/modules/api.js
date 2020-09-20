@@ -81,14 +81,14 @@ async function login(email, password) {
   }
 }
 
-async function register(name, email, password) {
+async function register(name, username, email, password) {
   try {
     const response = await post("/register", {
+      username,
       email,
-      nome: name,
+      name,
       pwd: password
     });
-    console.log(response);
   } catch (error) {
     throw new Error(error.message || 'Erro');
   }
