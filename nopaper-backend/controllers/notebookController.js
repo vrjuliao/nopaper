@@ -22,3 +22,15 @@ exports.new = function (req, res) {
     res.send('Notebook criado com sucesso');
   });
 };
+
+exports.delete = (req, res) => {
+  Notebook.findById(req.body.id, (err, success) => {
+    if (err) return res.status(400).send('Id invalido.');
+    if (success.userId.toString() !== req.body.userId)
+      return res.status(403).send('Proibido. Notebook não te pertence.');
+    success.deleteOne((err) => {
+      if (err) return res.status(500).send('Não foi possivel deletar o notebook. Tente novamente mais tarde.');
+    });
+    return res.send('Notebook deletado com sucesso.');
+  });
+};
