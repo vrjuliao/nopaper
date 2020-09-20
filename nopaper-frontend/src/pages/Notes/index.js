@@ -52,7 +52,7 @@ function Notes(props){
             <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Voltar</span>
           </div>
 
-          <div onClick={() => history.push("/markdown-editor") } style={{ alignItems: 'center', backgroundColor: '#2fa8d4', paddingLeft: 20, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
+          <div onClick={() => history.push({ pathname: "/markdown-editor", state: { currentNotebook }}) } style={{ alignItems: 'center', backgroundColor: '#2fa8d4', paddingLeft: 20, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
             <PlusOutlined style={{ fontSize: 15, color: 'white' }} />
             <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Criar nota</span>
           </div>
