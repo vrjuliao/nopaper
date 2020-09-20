@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input, notification } from 'antd';
 import { useHistory } from "react-router-dom";
 import TopHeader from '../../components/TopHeader';
@@ -16,18 +16,26 @@ function MarkdownEditor(props) {
   const [markdownText, setMarkdownText] = useState('');
   const [noteTitle, setNoteTitle] = useState('');
 
+  useEffect(() => {
+    const currentNote = props.location.state.note;
+    if (currentNote) {
+      setNoteTitle(currentNote.title);
+      setMarkdownText(currentNote.markdown);
+    }
+  }, [])
+
   const saveNote = async () => {
     try {
       const currentNotebook = props.location.state.currentNotebook;
       await Api.createNewNote(noteTitle, markdownText, currentNotebook._id);
       notification.success({
-        description: 'Notebook criado com sucesso!',
+        description: 'Nota criada com sucesso!',
         message: 'Pronto!'
       });
       history.goBack();
     } catch (err) {
       notification.error({
-        description: 'Erro ao criar notebook.',
+        description: 'Erro ao criar nota.',
         message: 'Oopss...'
       });
     }
@@ -56,7 +64,11 @@ function MarkdownEditor(props) {
               <div onClick={() => history.goBack()} style={{ backgroundColor: 'rgba(0,0,0,0.2)', paddingLeft: 30, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
                 <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Cancelar</span>
               </div>
-              <div onClick={() => saveNote()} style={{ marginLeft: 15,  backgroundColor: '#2fa8d4', paddingLeft: 30, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
+              <div onClick={() => { 
+                if (!props.location.state.note) {
+                  saveNote()
+                }
+              }} style={{ marginLeft: 15,  backgroundColor: '#2fa8d4', paddingLeft: 30, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
                 <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Salvar</span>
               </div>
             </div>

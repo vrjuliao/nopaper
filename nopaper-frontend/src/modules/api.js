@@ -51,12 +51,15 @@ async function patch(path, data) {
   }
 }
 
-async function del(path) {
+async function del(path, data) {
   try {
     const token = sessionStorage.getItem('token');
     const response = await api.delete(path, { headers: {
       'x-access-token': token
-    }});
+    },
+    params: data,
+    data: data,
+    });
     return response.data;
   } catch (error) {
     return Promise.reject(error);
@@ -123,12 +126,43 @@ async function createNewNote(title, markdown, notebookId){
   }
 }
 
-async function getUserNotes(notebookId){
+async function getUserNotes(notebookId) {
   try {
     const notes = await get("/note/get", {
       id: notebookId
     });
     return notes;
+  } catch (err) {
+    throw new Error(err.message || 'Erro');
+  }
+}
+
+async function deleteNotebook(notebookId) {
+  try {
+    await del("/notebook/delete", {
+      id: notebookId
+    });
+  } catch (err) {
+    throw new Error(err.message || 'Erro');
+  }
+}
+
+async function deleteNote(noteId, notebookId) {
+  try {
+    await del("/note/delete", {
+      notebookId,
+      noteId
+    });
+  } catch (err) {
+    throw new Error(err.message || 'Erro');
+  }
+}
+
+async function editNotebookName(notebookId) {
+  try {
+    await patch("/notebook/update", {
+      notebookId
+    });
   } catch (err) {
     throw new Error(err.message || 'Erro');
   }
@@ -144,7 +178,10 @@ export default {
   getUserNotebooks,
   createNewNotebook,
   createNewNote,
-  getUserNotes
+  getUserNotes,
+  deleteNotebook,
+  deleteNote,
+  editNotebookName
 };
 
 

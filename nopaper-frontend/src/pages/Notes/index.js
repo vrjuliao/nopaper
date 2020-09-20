@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Avatar, Card, Button, Tag, Divider, Spin } from 'antd';
+import { Avatar, Button, Tag, Divider, Spin, notification, Popover, Form, Input } from 'antd';
 import { PlusOutlined, ArrowLeftOutlined, CopyOutlined, DeleteOutlined, FormOutlined } from '@ant-design/icons'
 import 'antd/dist/antd.css';
 import { useHistory } from "react-router-dom";
@@ -21,6 +21,8 @@ function Notes(props){
   const username = sessionStorage.getItem('username');
   const [loading, setLoading] = useState(false);
   const [notes, setNotes] = useState([]);
+  const [newNotebookName, setNewNotebookName] = useState('');
+  const [popoverVisible, setPopoverVisible] = useState(false);
 
   useEffect(() => {
     loadApiData();
@@ -35,6 +37,50 @@ function Notes(props){
     } catch (err) {
       console.log('Erro ao tentar encontrar as notas');
       setLoading(false);
+    }
+  }
+
+  const deleteNotebook = async () => {
+    try {
+      await Api.deleteNotebook(currentNotebook._id);
+      history.push("/dashboard");
+      notification.success({
+        description: 'Notebook excluido com sucesso!',
+        message: 'Pronto!'
+      });
+    } catch(err) {
+      notification.error({
+        description: 'Erro ao excluir notebook.',
+        message: 'Oopss...'
+      });
+    }
+  }
+
+  const deleteNote = async (noteId) => {
+    try {
+      await Api.deleteNote(noteId, currentNotebook._id);
+      loadApiData();
+      notification.success({
+        description: 'Nota excluido com sucesso!',
+        message: 'Pronto!'
+      });
+    } catch(err) {
+      notification.error({
+        description: 'Erro ao excluir nota.',
+        message: 'Oopss...'
+      });
+    }
+  }
+
+  const updateNotebookName = async () => {
+    try {
+      await Api.editNotebookName(currentNotebook._id);
+      loadApiData();
+    } catch (err) {
+      notification.error({
+        description: 'Erro ao excluir nota.',
+        message: 'Oopss...'
+      });
     }
   }
 
@@ -72,12 +118,44 @@ function Notes(props){
             <span style={{ fontSize: 20, color: 'rgba(0,0,0,0.4)' }}>Criado em {currentNotebook.createdAt}</span>
 
             <div style={{ alignContent: 'center', justifyContent: 'space-around', display: 'flex', marginTop: 15 }} >
-              <div style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
-                <Button 
-                  style={{ border: '0px' }}
-                  icon={<FormOutlined style={{ color: '#2fa8d4', fontSize: 20, marginTop: 4 }} />} 
-                />
-              </div>
+              
+              
+            <Popover
+                title='Editar nome do Caderno'
+                trigger='click'
+                placement='top'
+                visible={popoverVisible}
+                onVisibleChange={visible => setPopoverVisible(visible)}
+                content={
+                  <>
+                  <Form layout="vertical" className="user-modal-form" style={{ width: 200 }}>
+                    <Form.Item label={<span style={{ fontWeight: 'bold' }}>Nome do Caderno</span>}>
+                      <Input 
+                        placeholder={'Escreva aqui'}
+                        onChange={(value) => setNewNotebookName(value.target.value)}
+                        value={newNotebookName}
+                        style={{ width: 200 }}
+                      />
+                    </Form.Item>
+                    <Form.Item>
+                      <Button type='primary' style={{ width: 200 }} onClick={() => {
+                          setPopoverVisible(false);
+                          setNewNotebookName('');
+                        }}>
+                        Editar Caderno
+                      </Button>
+                    </Form.Item>
+                  </Form>
+                  </>
+                }
+              >
+                <div style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
+                  <Button 
+                    style={{ border: '0px' }}
+                    icon={<FormOutlined style={{ color: '#2fa8d4', fontSize: 20, marginTop: 4 }} />} 
+                  />
+                </div>
+              </Popover>
 
               <div style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
                 <Button 
@@ -86,14 +164,14 @@ function Notes(props){
                 />
               </div>
 
-              <div style={{ padding: 8, border: '2px solid #ff584f', borderRadius: 50 }}>
+              <div onClick={() => deleteNotebook()} style={{ padding: 8, border: '2px solid #ff584f', borderRadius: 50 }}>
                 <Button 
                   style={{ border: '0px' }}
                   icon={<DeleteOutlined style={{ color: '#ff584f', fontSize: 20, marginTop: 4 }}/>} 
                 />
               </div>
+        
             </div>
-
           </div>
 
           <div style={{ flex: 2, paddingLeft: 20 }}>
@@ -106,7 +184,10 @@ function Notes(props){
                       <span style={{ fontSize: 18 }}>{note.title}</span>
 
                       <div style={{ alignContent: 'center', justifyContent: 'space-around', display: 'flex' }} >
-                        <div style={{ padding: 0, border: '0px solid #2fa8d4' }}>
+                        <div onClick={() => history.push({
+                          pathname: '/markdown-editor',
+                          state: { note }
+                        })} style={{ padding: 0, border: '0px solid #2fa8d4' }}>
                           <Button 
                             style={{ border: '0px', backgroundColor: 'transparent' }}
                             icon={<FormOutlined style={{ color: '#2fa8d4', fontSize: 17, marginTop: 4 }} />} 
@@ -120,8 +201,8 @@ function Notes(props){
                           />
                         </div>
 
-                        <div style={{ padding: 0, border: '0px solid #ff584f' }}>
-                          <Button 
+                        <div onClick={() => deleteNote(note._id)} style={{ padding: 0, border: '0px solid #ff584f' }}>
+                          <Button
                             style={{ border: '0px', backgroundColor: 'transparent' }}
                             icon={<DeleteOutlined style={{ color: '#ff584f', fontSize: 17, marginTop: 4 }}/>} 
                           />

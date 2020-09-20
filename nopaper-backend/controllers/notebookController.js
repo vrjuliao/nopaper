@@ -33,6 +33,7 @@ exports.new = function (req, res) {
   });
 };
 
+
 exports.delete = async (req, res) => {
   try {
     const notebook = await Notebook.findById(req.query.id);
