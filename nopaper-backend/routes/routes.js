@@ -26,6 +26,7 @@ router.post('/register', login_controller.register);
 const middleware = require('../middleware/authentication');
 router.use('/', middleware.authGuard);
 router.get('/notebook', notebook_controller.find);
+router.get('/notebook/getbyuser', notebook_controller.getNotebooksByUser);
 router.post('/notebook/new', notebook_controller.new);
 router.put('/notebook/update', notebook_controller.update);
 router.post('/notebook/clone', notebook_controller.clone);
