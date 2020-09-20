@@ -23,6 +23,7 @@ exports.register = function (req, res) {
     email: req.body.email,
     name: req.body.name,
     pwd: req.body.pwd,
+    username: req.body.username
   });
 
   user.save(function (err) {

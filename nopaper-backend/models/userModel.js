@@ -4,6 +4,7 @@ var encrypt = require('mongoose-encryption');
 const Schema = mongoose.Schema;
 let UserSchema = new Schema({
   email: { type: String, required: true, unique: true, max: 100 },
+  username: { type: String, required: true, unique: true, max: 20},
   name: { type: String, required: true, max: 100 },
   pwd: { type: String, required: true },
   favorites: {type: Array, required:true, default:[]}
