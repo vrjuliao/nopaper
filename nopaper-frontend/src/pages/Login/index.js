@@ -1,4 +1,4 @@
-import React,{useRef} from 'react';
+import React,{useRef, useEffect} from 'react';
 import { Card, Carousel } from 'antd';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 
@@ -9,6 +9,10 @@ import RegisterForm from './RegisterForm';
 function Login(props) {
 
   const slider = useRef();
+
+  useEffect(() => {
+    sessionStorage.removeItem('token');
+  }, [])
 
   return (
     <div id='page-login' >

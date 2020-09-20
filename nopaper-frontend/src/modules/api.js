@@ -8,7 +8,11 @@ const api = axios.create({
 
 async function get(path) {
   try {
-    const response = await api.get(path, { cache: false });
+    const token = sessionStorage.getItem('token');
+    const response = await api.get(path, { headers: {
+      'x-access-token': token
+    },
+    cache: false });
     return response.data;
   } catch (error) {
     return Promise.reject(error);
@@ -17,7 +21,10 @@ async function get(path) {
 
 async function post(path, data) {
   try {
-    const response = await api.post(path, data, { crossdomain: true });
+    const token = sessionStorage.getItem('token');
+    const response = await api.post(path, data, { headers: {
+      'x-access-token': token
+    }, crossdomain: true });
     return response.data;
   } catch (error) {
     if (error.response && error.response.status === 400){
@@ -32,7 +39,10 @@ async function post(path, data) {
 
 async function patch(path, data) {
   try {
-    const response = await api.patch(path, data);
+    const token = sessionStorage.getItem('token');
+    const response = await api.patch(path, data, { headers: {
+      'x-access-token': token
+    }});
     return response.data;
   } catch (error) {
     return Promise.reject(error);
@@ -41,7 +51,10 @@ async function patch(path, data) {
 
 async function del(path) {
   try {
-    const response = await api.delete(path);
+    const token = sessionStorage.getItem('token');
+    const response = await api.delete(path, { headers: {
+      'x-access-token': token
+    }});
     return response.data;
   } catch (error) {
     return Promise.reject(error);
@@ -56,6 +69,7 @@ async function login(email, password) {
       email,
       pwd: password
     });
+    return response;
   } catch (error) {
     console.log(error);
     throw new Error(error);
@@ -75,9 +89,31 @@ async function register(name, email, password) {
   }
 }
 
+async function getUserNotebooks() {
+  try {
+    const notebooks = await get("/notebook");
+    return notebooks;
+  } catch (err) {
+    throw new Error(err.message || 'Erro');
+  }
+}
+
+async function createNewNotebook(name, description = "") {
+  try {
+    await post("/notebook/new" , {
+      name,
+      description
+    });
+  } catch (err) {
+    throw new Error(err.message || 'Erro');
+  }
+}
+
 export default {
   login,
-  register
+  register,
+  getUserNotebooks,
+  createNewNotebook
 };
 
 

@@ -3,19 +3,25 @@ import { Form, Input, Button } from 'antd';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { KeyOutlined, MailOutlined } from '@ant-design/icons'
 import Api from '../../modules/api';
+import { useHistory } from "react-router-dom";
 
 
 function LoginForm(props) {
-
+  const history = useHistory();
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
 
   const handleLogin = async () => {
     try {
-    await Api.login(email, password);
-    alert("Login bem sucedido!!");
+      const res = await Api.login(email, password);
+      
+      sessionStorage.setItem('token', res.token);
+      sessionStorage.setItem('username', res.data.name);
+      
+      history.push('/dashboard');
+
     } catch (error) {
-    alert("Email ou senha incorretos");
+      alert("Email ou senha incorretos");
     }
   };
 
