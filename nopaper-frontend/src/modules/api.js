@@ -170,12 +170,12 @@ async function editNotebookName(notebookId, title) {
   }
 }
 
-async function editNote(noteId, notebookId, title, markdown) {
+async function editNote(noteId, notebookId, name, markdown) {
   try {
     await put("/note/update", {
       noteId,
       notebookId,
-      title,
+      name,
       markdown
     })
   } catch (err) {
