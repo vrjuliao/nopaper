@@ -5,11 +5,12 @@ import { hot } from 'react-hot-loader';
 import Login from '../src/pages/Login';
 import Dashboard from '../src/pages/Dashboard';
 import MarkdownEditor from '../src/pages/MarkdownEditor';
-
+import Notes from '../src/pages/Notes';
 
 const routes = [
   { path: '/dashboard', component: Dashboard },
-  { path: '/markdown-editor', component: MarkdownEditor }
+  { path: '/markdown-editor', component: MarkdownEditor },
+  { path: '/notes', component: Notes }
 ]
 
 const App = () => {
