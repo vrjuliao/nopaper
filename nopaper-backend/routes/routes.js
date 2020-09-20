@@ -17,6 +17,7 @@ const multiparty = require('connect-multiparty');
 const login_controller = require('../controllers/loginController');
 const notebook_controller = require('../controllers/notebookController');
 const note_controller = require('../controllers/noteController');
+const user_controller = require('../controllers/userController');
 
 router.post('/login', login_controller.login);
 router.post('/register', login_controller.register);
@@ -33,5 +34,6 @@ router.get('/note/get', note_controller.getNotesById);
 router.put('/note/update', note_controller.updateNote);
 router.put('/note/delete', note_controller.deleteNote);
 router.post('/note/clone', note_controller.cloneNote);
+router.get('/users', user_controller.all);
 
 module.exports = router;

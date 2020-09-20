@@ -43,10 +43,10 @@ exports.updateNote = async (req, res) => {
     try {
       await Note.findByIdAndUpdate(req.body.noteId, { title: req.body.title, markdown: req.body.markdown });
       return res.send('Nota atualizada com sucesso!');
-    } catch {
+    } catch (err){
       return res.status(400).send('Note id inválido.');
     }
-  } catch {
+  } catch (err){
     return res.status(400).send('Notebook id inválido.');
   }
 };
@@ -57,10 +57,10 @@ exports.deleteNote = async (req, res) => {
     try {
       await Note.findByIdAndDelete(req.body.noteId);
       res.send('Nota deletada com sucesso!');
-    } catch {
+    } catch (err){
       return res.status(400).send('Note id inválido.');
     }
-  } catch {
+  } catch (err){
     return res.status(400).send('Notebook id inválido.');
   }
 };
