@@ -39,10 +39,10 @@ async function post(path, data) {
   }
 }
 
-async function patch(path, data) {
+async function put(path, data) {
   try {
     const token = sessionStorage.getItem('token');
-    const response = await api.patch(path, data, { headers: {
+    const response = await api.put(path, data, { headers: {
       'x-access-token': token
     }});
     return response.data;
@@ -160,9 +160,22 @@ async function deleteNote(noteId, notebookId) {
 
 async function editNotebookName(notebookId) {
   try {
-    await patch("/notebook/update", {
+    await put("/notebook/update", {
       notebookId
     });
+  } catch (err) {
+    throw new Error(err.message || 'Erro');
+  }
+}
+
+async function editNote(noteId, notebookId, title, markdown) {
+  try {
+    await put("/note/update", {
+      noteId,
+      notebookId,
+      title,
+      markdown
+    })
   } catch (err) {
     throw new Error(err.message || 'Erro');
   }
@@ -181,7 +194,8 @@ export default {
   getUserNotes,
   deleteNotebook,
   deleteNote,
-  editNotebookName
+  editNotebookName,
+  editNote
 };
 
 

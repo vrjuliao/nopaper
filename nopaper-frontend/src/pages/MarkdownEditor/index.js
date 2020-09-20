@@ -41,6 +41,25 @@ function MarkdownEditor(props) {
     }
   }
 
+  const editNote = async () => {
+    try {
+      const currentNote = props.location.state.note;
+      const currentNotebook = props.location.state.currentNotebook;
+      await Api.editNote(currentNote._id, currentNotebook._id, noteTitle, markdownText);
+      
+      notification.success({
+        description: 'Nota editada com sucesso!',
+        message: 'Pronto!'
+      });
+      history.goBack();
+    } catch (err) {
+      notification.error({
+        description: 'Erro ao editar nota.',
+        message: 'Oopss...'
+      });
+    }
+  }
+
   return (
     <div style={{ height: '100vh' }}>
       <TopHeader />
@@ -67,6 +86,8 @@ function MarkdownEditor(props) {
               <div onClick={() => { 
                 if (!props.location.state.note) {
                   saveNote()
+                } else {
+                  editNote()
                 }
               }} style={{ marginLeft: 15,  backgroundColor: '#2fa8d4', paddingLeft: 30, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
                 <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Salvar</span>

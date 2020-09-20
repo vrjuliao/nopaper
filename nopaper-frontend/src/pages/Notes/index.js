@@ -186,7 +186,7 @@ function Notes(props){
                       <div style={{ alignContent: 'center', justifyContent: 'space-around', display: 'flex' }} >
                         <div onClick={() => history.push({
                           pathname: '/markdown-editor',
-                          state: { note }
+                          state: { note, currentNotebook }
                         })} style={{ padding: 0, border: '0px solid #2fa8d4' }}>
                           <Button 
                             style={{ border: '0px', backgroundColor: 'transparent' }}

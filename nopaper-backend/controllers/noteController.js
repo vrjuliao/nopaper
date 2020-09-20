@@ -38,6 +38,7 @@ exports.setNewNote = async (req, res) => {
 };
 
 exports.updateNote = async (req, res) => {
+  console.log("OOOKOKOKOKOKOK");
   try {
     await Notebook.find({ _id: req.body.notebookId, userId: req.body.userId });
     try {
