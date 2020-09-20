@@ -21,13 +21,13 @@ function MarkdownEditor(props) {
       const currentNotebook = props.location.state.currentNotebook;
       await Api.createNewNote(noteTitle, markdownText, currentNotebook._id);
       notification.success({
-        description: 'Notebook criado com sucesso!',
+        description: 'Nota criada com sucesso!',
         message: 'Pronto!'
       });
       history.goBack();
     } catch (err) {
       notification.error({
-        description: 'Erro ao criar notebook.',
+        description: 'Erro ao criar nota.',
         message: 'Oopss...'
       });
     }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Avatar, Card, Button, Tag, Divider, Spin } from 'antd';
+import { Avatar, Card, Button, Tag, Divider, Spin, notification } from 'antd';
 import { PlusOutlined, ArrowLeftOutlined, CopyOutlined, DeleteOutlined, FormOutlined } from '@ant-design/icons'
 import 'antd/dist/antd.css';
 import { useHistory } from "react-router-dom";
@@ -35,6 +35,22 @@ function Notes(props){
     } catch (err) {
       console.log('Erro ao tentar encontrar as notas');
       setLoading(false);
+    }
+  }
+
+  const deleteNotebook = async () => {
+    try {
+      await Api.deleteNotebook(currentNotebook._id);
+      history.push("/dashboard");
+      notification.success({
+        description: 'Notebook excluido com sucesso!',
+        message: 'Pronto!'
+      });
+    } catch(err) {
+      notification.error({
+        description: 'Erro ao excluir notebook.',
+        message: 'Oopss...'
+      });
     }
   }
 
@@ -86,7 +102,7 @@ function Notes(props){
                 />
               </div>
 
-              <div style={{ padding: 8, border: '2px solid #ff584f', borderRadius: 50 }}>
+              <div onClick={() => deleteNotebook()} style={{ padding: 8, border: '2px solid #ff584f', borderRadius: 50 }}>
                 <Button 
                   style={{ border: '0px' }}
                   icon={<DeleteOutlined style={{ color: '#ff584f', fontSize: 20, marginTop: 4 }}/>} 
