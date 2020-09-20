@@ -76,3 +76,12 @@ exports.clone = async (req, res) => {
     return res.status(500).send('Não foi possivel clonar o caderno');
   }
 };
+
+exports.update = async (req, res) => {
+  try {
+    await Notebook.findOneAndUpdate({ _id: req.body.notebookId, userId: req.body.userId }, { title: req.body.title });
+    return res.send('Notebook atualizada com sucesso!');
+  } catch (err) {
+    return res.status(400).send('Notebook id inválido.');
+  }
+};
