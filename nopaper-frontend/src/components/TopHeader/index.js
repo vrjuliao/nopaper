@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Avatar, Badge, Input, Select, notification } from 'antd';
 import { StarOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import Api from '../../modules/api';
+import { useHistory } from "react-router-dom";
 
 const { Search } = Input;
 
@@ -12,6 +13,7 @@ const shadow = {
 }
 
 const TopHeader = (props) => {
+  const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [userList, setUserList] = useState([]);
 
@@ -30,6 +32,15 @@ const TopHeader = (props) => {
     }
   }
 
+  const onSelectUser = (value) => {
+    console.log(value);
+    history.replace({
+      pathname: "/dashboard",
+      state: { selectedUser: value }
+    })
+    history.go(0);
+  }
+
   return (
     <div style={{ backgroundColor: 'white', width: '100vw', height: 95, ...shadow, display: 'flex', flex: 3,  alignItems: 'center', padding: 20, position: 'relative', zIndex: 1 }}>
       <div style={{ flex: 2 }}>
@@ -44,12 +55,12 @@ const TopHeader = (props) => {
           
           {/* <Search placeholder="Buscar usuário" onSearch={value => console.log(value)} /> */}
 
-          <Select style={{ width: 200 }} placeholder={'Buscar usuário'} loading={loading} onFocus={() => loadUserList()}>
+          <Select onSelect={(value) => onSelectUser(value)} style={{ width: 200 }} placeholder={'Buscar usuário'} loading={loading} onFocus={() => loadUserList()} showArrow={false} showSearch>
             {
               userList.length > 0 && userList.map((user, index) => {
                 return (
-                  <Select.Option key={index}>
-                    {user.username || user.name}
+                  <Select.Option value={user._id} key={index}>
+                    {user.username}
                   </Select.Option>
                 );
               })

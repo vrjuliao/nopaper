@@ -87,6 +87,7 @@ exports.update = async (req, res) => {
 };
 
 exports.getNotebooksByUser = async (req, res) => {
+  console.log(req.query.id);
   Notebook.find({ userId: req.query.id }, ['_id', 'name', 'description', 'createdAt'])
     .sort({ updatedAt: -1 })
     .exec(function (err, success) {

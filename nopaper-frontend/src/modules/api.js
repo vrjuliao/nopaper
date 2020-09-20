@@ -192,6 +192,17 @@ async function getUserList() {
   }
 }
 
+async function getOtherUserNotebooks(userId) {
+  try {
+    const notebooks = await get("/notebook/getbyuser", {
+      id: userId
+    })
+    return notebooks;
+  } catch (err) {
+    throw new Error(err.message || 'Erro');
+  }
+}
+
 //new note
 //list note
 //crair campo username
@@ -207,7 +218,8 @@ export default {
   deleteNote,
   editNotebookName,
   editNote,
-  getUserList
+  getUserList,
+  getOtherUserNotebooks
 };
 
 

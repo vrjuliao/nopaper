@@ -23,15 +23,35 @@ function Dashboard(props) {
   const [newNotebookName, setNewNotebookName] = useState('');
   const [loading, setLoading] = useState(false);
   const [notebooks, setNotebooks] = useState([]);
+  const [allowed, setAllowed] = useState(true);
 
   useEffect(() => {
-    loadApiData();
+    const selectedUser = props.location.state && props.location.state.selectedUser;
+    if (selectedUser) {
+      setAllowed(false);
+      loadOtherUserApi();
+    } else {
+      loadApiData();
+    }
   }, [])
 
   const loadApiData = async () => {
     setLoading(true);
     try {
       const notebooks = await Api.getUserNotebooks();
+      setNotebooks(notebooks);
+      setLoading(false);
+    } catch (err) {
+      console.log('Erro ao tentar encontrar os notebooks');
+      setLoading(false);
+    }
+  }
+
+  const loadOtherUserApi = async () => {
+    setLoading(true);
+    try {
+      const notebooks = await Api.getOtherUserNotebooks(props.location.state.selectedUser);
+      console.log(notebooks);
       setNotebooks(notebooks);
       setLoading(false);
     } catch (err) {
@@ -95,43 +115,45 @@ function Dashboard(props) {
           </Row>
         }
 
-        <Popover
-          title='Adicionar Caderno'
-          trigger='click'
-          placement='top'
-          visible={popoverVisible}
-          onVisibleChange={visible => setPopoverVisible(visible)}
-          content={
-            <>
-            <Form layout="vertical" className="user-modal-form" style={{ width: 200 }}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>Nome do Caderno</span>}>
-                <Input 
-                  placeholder={'Escreva aqui'}
-                  onChange={(value) => setNewNotebookName(value.target.value)}
-                  value={newNotebookName}
-                  style={{ width: 200 }}
-                />
-              </Form.Item>
-              <Form.Item>
-                <Button type='primary' style={{ width: 200 }} onClick={() => {
-                    setPopoverVisible(false);
-                    createNotebook();
-                    setNewNotebookName('');
-                  }}>
-                  Adicionar Novo Caderno
-                </Button>
-              </Form.Item>
-            </Form>
-            </>
-          }
-        
-        >
-          <div style={{ position: 'absolute', bottom: '5%', right: '2%', backgroundColor: '#2fa8d4', paddingLeft: 30, paddingRight: 40, paddingTop: 15, paddingBottom: 15, borderRadius: 30, cursor: 'pointer', display: 'flex' }}>
-            <PlusOutlined style={{ fontSize: 22, color: 'white' }} />
-            <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Adicionar Novo Caderno</span>
-          </div>
-        </Popover>  
-
+        {
+          allowed &&
+          <Popover
+            title='Adicionar Caderno'
+            trigger='click'
+            placement='top'
+            visible={popoverVisible}
+            onVisibleChange={visible => setPopoverVisible(visible)}
+            content={
+              <>
+              <Form layout="vertical" className="user-modal-form" style={{ width: 200 }}>
+                <Form.Item label={<span style={{ fontWeight: 'bold' }}>Nome do Caderno</span>}>
+                  <Input 
+                    placeholder={'Escreva aqui'}
+                    onChange={(value) => setNewNotebookName(value.target.value)}
+                    value={newNotebookName}
+                    style={{ width: 200 }}
+                  />
+                </Form.Item>
+                <Form.Item>
+                  <Button type='primary' style={{ width: 200 }} onClick={() => {
+                      setPopoverVisible(false);
+                      createNotebook();
+                      setNewNotebookName('');
+                    }}>
+                    Adicionar Novo Caderno
+                  </Button>
+                </Form.Item>
+              </Form>
+              </>
+            }
+          
+          >
+            <div style={{ position: 'absolute', bottom: '5%', right: '2%', backgroundColor: '#2fa8d4', paddingLeft: 30, paddingRight: 40, paddingTop: 15, paddingBottom: 15, borderRadius: 30, cursor: 'pointer', display: 'flex' }}>
+              <PlusOutlined style={{ fontSize: 22, color: 'white' }} />
+              <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Adicionar Novo Caderno</span>
+            </div>
+          </Popover>  
+        }
         
         </div>
       </div>
