@@ -85,3 +85,20 @@ exports.update = async (req, res) => {
     return res.status(400).send('Notebook id inválido.');
   }
 };
+
+exports.getNotebooksByUser = async (req, res) => {
+  Notebook.find({ userId: req.query.id }, ['_id', 'name', 'description', 'createdAt'])
+    .sort({ updatedAt: -1 })
+    .exec(function (err, success) {
+      if (err) return res.status(501).send('Notebook não foi encontrado');
+
+      let response = success.map((notebook) => {
+        let result = notebook.toJSON();
+        return {
+          ...result,
+          createdAt: dayjs(notebook.createdAt).format('DD/MM/YYYY'),
+        };
+      });
+      return res.send(response);
+    });
+};

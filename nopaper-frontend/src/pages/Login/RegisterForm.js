@@ -10,12 +10,13 @@ import Api from '../../modules/api';
 function RegisterForm(props) {
 
   const [ name, setName ] = useState('');
+  const [ username, setUsername ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
 
   const handleRegister = async () => {
     try {
-      await Api.register(name, email, password);
+      await Api.register(name, username, email, password);
       alert("Cadastro bem sucedido!!");
     } catch (error) {
       alert("Dados faltando ou incorretos");
@@ -47,6 +48,25 @@ function RegisterForm(props) {
             type='text'
             value={name}
             onChange={(value) => setName(value.target.value)}
+            />
+        </Form.Item>
+
+        <Form.Item
+            name="username"
+            rules={[
+            {
+                required: true,
+                message: 'Insira um belo username.',
+            },
+            ]}
+        >
+            <Input 
+            size='large'
+            prefix={<UserOutlined style={{ marginRight: 10, color: '#0cca9a' }} className="site-form-item-icon" />} 
+            placeholder="Seu username"
+            type='text'
+            value={username}
+            onChange={(value) => setUsername(value.target.value)}
             />
         </Form.Item>
 
