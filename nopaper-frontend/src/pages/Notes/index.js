@@ -74,11 +74,15 @@ function Notes(props){
 
   const updateNotebookName = async () => {
     try {
-      await Api.editNotebookName(currentNotebook._id);
+      await Api.editNotebookName(currentNotebook._id, newNotebookName);
       loadApiData();
+      notification.success({
+        description: 'Nota editada com sucesso!',
+        message: 'Pronto!'
+      });
     } catch (err) {
       notification.error({
-        description: 'Erro ao excluir nota.',
+        description: 'Erro ao editar o nome',
         message: 'Oopss...'
       });
     }
@@ -140,6 +144,7 @@ function Notes(props){
                     <Form.Item>
                       <Button type='primary' style={{ width: 200 }} onClick={() => {
                           setPopoverVisible(false);
+                          updateNotebookName();
                           setNewNotebookName('');
                         }}>
                         Editar Caderno

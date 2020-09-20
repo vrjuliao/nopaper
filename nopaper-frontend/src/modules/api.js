@@ -158,10 +158,12 @@ async function deleteNote(noteId, notebookId) {
   }
 }
 
-async function editNotebookName(notebookId) {
+async function editNotebookName(notebookId, title) {
+  console.log(notebookId, title);
   try {
     await put("/notebook/update", {
-      notebookId
+      notebookId,
+      title
     });
   } catch (err) {
     throw new Error(err.message || 'Erro');
