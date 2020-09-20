@@ -6,12 +6,14 @@ const api = axios.create({
   baseURL
 });
 
-async function get(path) {
+async function get(path, data) {
   try {
     const token = sessionStorage.getItem('token');
     const response = await api.get(path, { headers: {
       'x-access-token': token
-    },
+    }, 
+    params: data,
+    data: data,
     cache: false });
     return response.data;
   } catch (error) {
@@ -124,7 +126,7 @@ async function createNewNote(title, markdown, notebookId){
 async function getUserNotes(notebookId){
   try {
     const notes = await get("/note/get", {
-      notebookId
+      id: notebookId
     });
     return notes;
   } catch (err) {

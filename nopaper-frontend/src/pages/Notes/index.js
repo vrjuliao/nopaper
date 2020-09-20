@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Avatar, Card, Button, Tag, Divider } from 'antd';
+import { Avatar, Card, Button, Tag, Divider, Spin } from 'antd';
 import { PlusOutlined, ArrowLeftOutlined, CopyOutlined, DeleteOutlined, FormOutlined } from '@ant-design/icons'
 import 'antd/dist/antd.css';
 
@@ -16,26 +16,27 @@ const shadow = {
 
 function Notes(props){
 
-  
-  // const createNote = async () => {
-  //   try {
-  //     await Api.createNewNote(newNoteName);
-  //     notification.success({
-  //       description: 'Nota criada com sucesso!',
-  //       message: 'Pronto!'
-  //     });
-  //     loadApiData();
-  //   } catch (err) {
-  //     notification.error({
-  //       description: 'Erro ao criar nota.',
-  //       message: 'Oopss...'
-  //     });
-  //   }
-  // }
+  const [loading, setLoading] = useState(false);
+  const [notes, setNotes] = useState([]);
 
-  // useEffect(() => {
-  //   loadApiData();
-  // }, [])
+  useEffect(() => {
+    loadApiData();
+  }, [])
+
+  const loadApiData = async () => {
+    setLoading(true);
+    const currentNotebook = props.location.state.notebook;
+    console.log(currentNotebook._id);
+    try {
+      const notess = await Api.getUserNotes(currentNotebook._id);
+      setNotes(notess);
+      setLoading(false);
+    } catch (err) {
+      console.log('Erro ao tentar encontrar as notas');
+      setLoading(false);
+    }
+  }
+
 
   const notebook = {
     id: 10,
@@ -49,6 +50,7 @@ function Notes(props){
       'alooouasdasdsadasdas'
     ]
   }
+  
   
 
   return(
@@ -110,13 +112,13 @@ function Notes(props){
           </div>
 
           <div style={{ flex: 2, paddingLeft: 20 }}>
-            {
-              notebook.note.map((note, index) => {
+            { loading ? <Spin size="large" /> :
+              notes.map((note, index) => {
                 return (
-                  <div style={{ marginTop: index != 0 && 20, borderRadius: 6, padding: 7, paddingBottom: 15, ...shadow }}>
+                  <div key={index} style={{ marginTop: index != 0 && 20, borderRadius: 6, padding: 7, paddingBottom: 15, ...shadow }}>
 
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingLeft: 15 }}>
-                      <span style={{ fontSize: 18 }}>{note}</span>
+                      <span style={{ fontSize: 18 }}>{note.title}</span>
 
                       <div style={{ alignContent: 'center', justifyContent: 'space-around', display: 'flex' }} >
                         <div style={{ padding: 0, border: '0px solid #2fa8d4' }}>
@@ -148,7 +150,7 @@ function Notes(props){
                     </div>
 
                     <div style={{ paddingLeft: 15, marginTop: 7 }}>
-                      <Tag color="volcano">{notebook.date}</Tag>
+                      <Tag color="volcano">{note.createdAt}</Tag>
                     </div>
 
                   </div>

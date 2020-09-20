@@ -5,6 +5,7 @@ import { notebooks as testNotebooks, colors } from './testData';
 import './styles.css';
 import TopHeader from '../../components/TopHeader';
 import Api from '../../modules/api';
+import { useHistory } from "react-router-dom";
 
 const { Search } = Input;
 
@@ -16,6 +17,7 @@ const shadow = {
 
 function Dashboard(props) {
 
+  const history = useHistory();
   const username = sessionStorage.getItem('username');
   const [popoverVisible, setPopoverVisible] = useState(false);
   const [newNotebookName, setNewNotebookName] = useState('');
@@ -30,7 +32,6 @@ function Dashboard(props) {
     setLoading(true);
     try {
       const notebooks = await Api.getUserNotebooks();
-      console.log(notebooks);
       setNotebooks(notebooks);
       setLoading(false);
     } catch (err) {
@@ -70,7 +71,11 @@ function Dashboard(props) {
               notebooks && notebooks.map((notebook, index) => {
                 return (
                   <Col key={index} span={8} style={{ }}>
-                    <div style={{ display: 'inline-flex', cursor: 'pointer' }}>
+                    <div style={{ display: 'inline-flex', cursor: 'pointer' }} 
+                    onClick={() => history.push({
+                        pathname: '/notes',
+                        state: { notebook }
+                      }) }>
                       <div style={{ width: 15, height: 145, backgroundColor: colors[index % (colors.length)], borderTopLeftRadius: 8.5 }}>
                         <div style={{ marginTop: 137, width: 0, height: 0, borderLeft: '7.5px solid transparent', borderRight: '7.5px solid transparent', borderBottom: '8px solid white' }}></div>
                       </div>

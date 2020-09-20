@@ -3,8 +3,8 @@ var Note = require('../models/noteModel');
 
 exports.getNotesById = async (req, res) => {
   try {
-    await Notebook.find({ _id: req.body.id, userId: req.body.userId });
-    const notes = await Note.find({ notebookId: req.body.id }, [
+    await Notebook.find({ _id: req.query.id, userId: req.body.userId });
+    const notes = await Note.find({ notebookId: req.query.id }, [
       '_id',
       'title',
       'markdown',
