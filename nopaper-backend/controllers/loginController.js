@@ -3,7 +3,8 @@ var User = require('../models/userModel');
 
 exports.login = function (req, res, next) {
   User.find({ email: req.body.email }, function (err, user) {
-    if (err) return res.status(400).send('Usuario inválido!');
+    console.log(user);
+    if (err) return res.status(400).send('Usuário inválido!');
     if (user.length > 0 && user[0].pwd === req.body.pwd) {
       var usr = user[0];
       var id = usr._id;
@@ -20,13 +21,13 @@ exports.login = function (req, res, next) {
 exports.register = function (req, res) {
   let user = new User({
     email: req.body.email,
-    name: req.body.nome,
+    name: req.body.name,
     pwd: req.body.pwd,
   });
 
   user.save(function (err) {
     if (err) {
-      return res.status(400).send('Não foi possivel registrar! Tente novamente mais tarde.');
+      return res.status(400).send('Não foi possível registrar! Tente novamente mais tarde.');
     }
     res.send('Registro bem sucedido.');
   });

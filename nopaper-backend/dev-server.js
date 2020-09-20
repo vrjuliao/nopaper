@@ -11,7 +11,7 @@ const app = express();
 
 //Acesso à BD
 const mongoose = require('mongoose');
-let url = 'mongodb://localhost:27017/smartphones';
+let url = 'mongodb://localhost:27017/nopaper';
 let mongoDB = process.env.MONGODB_URI || url;
 mongoose.connect(mongoDB,{useNewUrlParser: true });
 mongoose.Promise = global.Promise;

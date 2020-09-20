@@ -1,11 +1,20 @@
 var Notebook = require('../models/notebookModel');
+const dayjs = require('dayjs')
 
 exports.find = function (req, res) {
-  Notebook.find({ userId: req.body.userId }, ['_id', 'name', 'description', 'createdAt'], { _id: 0, userId: 0 })
+  Notebook.find({ userId: req.body.userId }, ['_id', 'name', 'description', 'createdAt'])
     .sort({ updatedAt: -1 })
     .exec(function (err, success) {
       if (err) return res.status(501).send('Notebook não foi encontrado');
-      return res.send(success);
+
+      let response = success.map(notebook => {
+        let result = notebook.toJSON();
+        return {
+          ...result,
+          createdAt: dayjs(notebook.createdAt).format('DD/MM/YYYY')
+        }
+      });
+      return res.send(response);
     });
 };
 

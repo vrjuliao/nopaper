@@ -32,7 +32,7 @@ exports.setNewNote = async (req, res) => {
       if (err) return res.status(501).send('Não foi possivel criar nota.');
       return res.send('Nota criada com sucesso.');
     });
-  } catch {
+  } catch (err){
     return res.status(400).send('Notebook id inválido.');
   }
 };
