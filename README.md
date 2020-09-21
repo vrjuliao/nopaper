@@ -48,5 +48,5 @@ Cadernos virtuais colaborativos.
 
 * Eu como usuário desejo marcar outros usuários como favoritos. Para facilitar
   o acesso às notas desses outros perfis do sistema.
-  - [ ] Criar tela de favoritos - Vinícius.
-  - [x] Criar modelo de **Favoritos** - Gustavo.
+  - [ ] Criar tela de favoritos - Gustavo.
+  - [x] Criar modelo de **Favoritos** - Vinicius.
