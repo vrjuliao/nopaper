@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Avatar, Button, Tag, Divider, Spin, notification, Popover, Form, Input, Select } from 'antd';
+import { Avatar, Button, Tag, Divider, Spin, notification, Popover, Form, Input, Select, Popconfirm } from 'antd';
 import { PlusOutlined, ArrowLeftOutlined, CopyOutlined, DeleteOutlined, FormOutlined } from '@ant-design/icons'
 import 'antd/dist/antd.css';
 import { useHistory } from "react-router-dom";
@@ -206,21 +206,37 @@ function Notes(props){
               }
 
               { !props.location.state.allowed &&
-                <div onClick={() => cloneNotebook()} style={{ padding: 8, border: '2px solid #0cca9a', borderRadius: 50 }}>
+                <Popconfirm
+                  title="Copiar todo o caderno?"
+                  onConfirm={() => cloneNotebook()}
+                  okText="Sim"
+                  cancelText="Não"
+                  trigger={'click'}
+                >
+                <div style={{ padding: 8, border: '2px solid #0cca9a', borderRadius: 50 }}>
                   <Button 
                     style={{ border: '0px' }}
                     icon={<CopyOutlined style={{ color: '#0cca9a', fontSize: 20, marginTop: 4 }}/>} 
                   />
                 </div>
+                </Popconfirm>
               }
               
-              { props.location.state.allowed && 
-                <div onClick={() => deleteNotebook()} style={{ padding: 8, border: '2px solid #ff584f', borderRadius: 50 }}>
-                  <Button 
-                    style={{ border: '0px' }}
-                    icon={<DeleteOutlined style={{ color: '#ff584f', fontSize: 20, marginTop: 4 }}/>} 
-                  />
-                </div>
+              { props.location.state.allowed &&
+                <Popconfirm
+                  title="Tem certeza que deseja deletar?"
+                  onConfirm={() => deleteNotebook()}
+                  okText="Sim"
+                  cancelText="Não"
+                  trigger={'click'}
+                >
+                  <div style={{ padding: 8, border: '2px solid #ff584f', borderRadius: 50 }}>
+                    <Button 
+                      style={{ border: '0px' }}
+                      icon={<DeleteOutlined style={{ color: '#ff584f', fontSize: 20, marginTop: 4 }}/>} 
+                    />
+                  </div>
+                </Popconfirm>
               }
             </div>
           </div>
@@ -303,13 +319,21 @@ function Notes(props){
                           </Popover>
                         }
 
-                        { props.location.state.allowed && 
-                          <div onClick={() => deleteNote(note._id)} style={{ padding: 0, border: '0px solid #ff584f' }}>
-                            <Button
-                              style={{ border: '0px', backgroundColor: 'transparent' }}
-                              icon={<DeleteOutlined style={{ color: '#ff584f', fontSize: 17, marginTop: 4 }}/>} 
-                            />
-                          </div>
+                        { props.location.state.allowed &&
+                          <Popconfirm
+                            title="Tem certeza que deseja deletar?"
+                            onConfirm={() => deleteNote(note._id)}
+                            okText="Sim"
+                            cancelText="Não"
+                            trigger={'click'}
+                          >
+                            <div style={{ padding: 0, border: '0px solid #ff584f' }}>
+                              <Button
+                                style={{ border: '0px', backgroundColor: 'transparent' }}
+                                icon={<DeleteOutlined style={{ color: '#ff584f', fontSize: 17, marginTop: 4 }}/>} 
+                              />
+                            </div>
+                          </Popconfirm>
                         }
                         
                       </div>
