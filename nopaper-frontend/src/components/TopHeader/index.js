@@ -33,10 +33,11 @@ const TopHeader = (props) => {
   }
 
   const onSelectUser = (value) => {
+    const selectedUser = userList.find(user => user._id == value);
     console.log(value);
     history.replace({
       pathname: "/dashboard",
-      state: { selectedUser: value }
+      state: { selectedUser: value, selectedUserName: selectedUser.name }
     })
     history.go(0);
   }
@@ -47,7 +48,11 @@ const TopHeader = (props) => {
         <img src={require('../../assets/icons/icon_long.jpeg')} style={{ width: 200, height: 40 }} />
         <Avatar style={{ backgroundColor: 'greenyellow', verticalAlign: 'middle', marginLeft: 40, fontSize: 30, marginBottom: 5 }} size={55}>{props.username[0] || ''}</Avatar>
         <span style={{ marginLeft: 20, fontWeight: 'bold', color: 'rgba(0,0,0,0.7)', fontSize: 23 }} >{props.username}</span>
-        <Badge style={{ marginLeft: 15, marginBottom: 5 }} count={'Você'} />
+        
+        { !props.notCurrentUser &&
+          <Badge style={{ marginLeft: 15, marginBottom: 5 }} count={'Você'} />
+        }  
+      
       </div>
       <div style={{ flex: 1 }}>
         <div style={{ float: 'right', display: 'flex', alignItems: 'center' }}>

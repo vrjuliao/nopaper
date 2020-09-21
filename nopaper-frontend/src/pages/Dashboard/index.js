@@ -79,7 +79,7 @@ function Dashboard(props) {
   return (
     <div style={{ height: '100vh' }}>
       
-      <TopHeader username={username}/>
+      <TopHeader username={allowed ? username : props.location.state.selectedUserName } notCurrentUser={!allowed}/>
 
       <div style={{ alignItems: 'center', height: '-webkit-calc(100% - 95px)', position: 'relative' }} >
         <div style={{ backgroundColor: '#fff', marginLeft: '17.5%', width: '65%', height: '100%', padding: 60, overflow: 'scroll' }}>
