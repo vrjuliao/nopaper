@@ -119,11 +119,11 @@ function Notes(props){
           <div style={{ textAlign: 'left', flex: 1,  padding: 20, display: 'flex', flexDirection: 'column' }}>
             
             <div style={{ alignContent: 'center', justifyContent: 'center', display: 'flex' }}>
-              <Avatar style={{ backgroundColor: 'greenyellow', fontSize: 75, marginBottom: '20px'}} size={130}>{username[0]}</Avatar>
+              <Avatar style={{ backgroundColor: 'greenyellow', fontSize: 75, marginBottom: '20px'}} size={130}>{currentNotebook.author && currentNotebook.author[0] || username[0]}</Avatar>
             </div>
             
             <span style={{ fontSize: 20, fontWeight: 'bold', color: 'rgba(0,0,0,0.8)' }}>{notebookName}</span>
-            <span style={{ fontSize: 20, color: 'rgba(0,0,0,0.4)' }}>{username}</span>
+            <span style={{ fontSize: 20, color: 'rgba(0,0,0,0.4)' }}>{ currentNotebook.author || username}</span>
             <span style={{ fontSize: 20, color: 'rgba(0,0,0,0.4)' }}>Criado em {currentNotebook.createdAt}</span>
 
             <div style={{ alignContent: 'center', justifyContent: 'space-around', display: 'flex', marginTop: 15 }} >
