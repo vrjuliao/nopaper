@@ -53,6 +53,9 @@ function MarkdownEditor(props) {
         message: 'Pronto!'
       });
       history.goBack();
+      if (props.location.state.backTwice) {
+        history.goBack();
+      }
     } catch (err) {
       notification.error({
         description: 'Erro ao editar nota.',

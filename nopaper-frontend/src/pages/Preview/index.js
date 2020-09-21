@@ -39,7 +39,7 @@ function Preview(props){
             <div onClick={() => {
               history.push({
                 pathname: '/markdown-editor',
-                state: { note, currentNotebook: props.location.state.currentNotebook }
+                state: { note, currentNotebook: props.location.state.currentNotebook, backTwice: true }
               })
             }} style={{ alignItems: 'center', backgroundColor: '#2fa8d4', paddingLeft: 20, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
               <EditOutlined style={{ fontSize: 15, color: 'white' }} />
@@ -49,12 +49,12 @@ function Preview(props){
 
         </div>
 
-        <div style={{ marginTop: 30 }}>
-          <span style={{ fontSize: 28 }}>{note && note.title || 'Nome da Nota'}</span>
+        <div style={{ marginTop: 30, borderBottom: '1px solid #2fa8d4'  }}>
+          <span style={{ fontSize: 35 }}>{note && note.title || 'Nome da Nota'}</span>
         </div>
 
         <div style={{ marginTop: 30 }}>
-          <div dangerouslySetInnerHTML={{__html: mdParser.render(note && note.markdown || '')}}/>
+          <div className={"custom-html-style"} dangerouslySetInnerHTML={{__html: mdParser.render(note && note.markdown || '')}}/>
           {/* {
             ReactDOM.render(mdParser.render(note && note.markdown || ''))
           } */}
