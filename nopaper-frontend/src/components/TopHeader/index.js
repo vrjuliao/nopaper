@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Badge, Input, Select, notification } from 'antd';
+import { Avatar, Badge, Input, Select, notification, Popconfirm } from 'antd';
 import { StarOutlined, ArrowRightOutlined, HomeOutlined } from '@ant-design/icons';
 import Api from '../../modules/api';
 import { useHistory } from "react-router-dom";
@@ -82,9 +82,15 @@ const TopHeader = (props) => {
             
             <HomeOutlined style={{ fontSize: 20, marginLeft: 20, border: '1px solid #ffbc05', padding: 10, borderRadius: 8, color: '#ffbc05', cursor: 'pointer' }} />
           </div>
-          <div onClick={() => history.push("/login")}>
+          <Popconfirm 
+            title="Tem certeza que deseja sair?"
+            onConfirm={() => history.push("/login")}
+            okText="Sim"
+            cancelText="Não"
+            trigger={'click'}
+          >
             <ArrowRightOutlined style={{ fontSize: 20, marginLeft: 10, border: '1px solid #ed2b58', padding: 10, borderRadius: 8, color: '#ed2b58', cursor: 'pointer' }} />
-          </div>
+          </Popconfirm>
         </div>
       </div>
     </div>
