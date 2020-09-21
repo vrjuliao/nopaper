@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Row, Col, Popover, Form, Button, Spin, notification } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, FrownOutlined } from '@ant-design/icons';
 import { notebooks as testNotebooks, colors } from './testData';
 import './styles.css';
 import TopHeader from '../../components/TopHeader';
@@ -86,6 +86,15 @@ function Dashboard(props) {
 
         {
           loading ? <Spin size="large" /> :
+          notebooks.length == 0 ? 
+            <div style={{textAlign:"center"}}>
+                <FrownOutlined style={{fontSize: 64, textAlign: "center", opacity: "30%"}} />
+                <div style={{marginTop: 16, opacity: "40%"}}>
+                  Você ainda não tem cadernos!
+                </div>
+            </div>
+          :
+          
           <Row gutter={[16, 32]}>
             {
               notebooks && notebooks.map((notebook, index) => {
