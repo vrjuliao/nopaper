@@ -1,6 +1,7 @@
 var Notebook = require('../models/notebookModel');
 const dayjs = require('dayjs');
 var Note = require('../models/noteModel');
+var User = require('../models/userModel');
 
 exports.find = function (req, res) {
   Notebook.find({ userId: req.body.userId }, ['_id', 'name', 'description', 'createdAt'])
@@ -87,7 +88,12 @@ exports.update = async (req, res) => {
 };
 
 exports.getNotebooksByUser = async (req, res) => {
-  Notebook.find({ userId: req.query.id }, ['_id', 'name', 'description', 'createdAt'])
+  User.find({_id: req.query.id}, ['name'], (err, success) =>{
+    if (err || success.length == 0)
+      return res.status(501).send('Usuário inválido');
+
+    var name = success[0].name
+    Notebook.find({ userId: req.query.id }, ['_id', 'name', 'description', 'createdAt'])
     .sort({ updatedAt: -1 })
     .exec(function (err, success) {
       if (err) return res.status(501).send('Notebook não foi encontrado');
@@ -97,8 +103,11 @@ exports.getNotebooksByUser = async (req, res) => {
         return {
           ...result,
           createdAt: dayjs(notebook.createdAt).format('DD/MM/YYYY'),
+          author: name
         };
       });
       return res.send(response);
     });
+
+  });
 };
