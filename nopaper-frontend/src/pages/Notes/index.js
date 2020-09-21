@@ -28,6 +28,7 @@ function Notes(props){
   const [notebookName, setNotebookName] = useState(currentNotebook.name);
   const [userNotebooks, setUserNotebooks] = useState([]);
   const [notebookCloneId, setNotebookCloneId] = useState('');
+  const [currentSelectedNoteIndex, setCurrentSelectedNoteIndex] = useState(undefined);
 
   useEffect(() => {
     loadApiData();
@@ -255,7 +256,7 @@ function Notes(props){
                             title='Escolha o nome do Caderno'
                             trigger='click'
                             placement='top'
-                            visible={copyPopoverVisible}
+                            visible={copyPopoverVisible && index == currentSelectedNoteIndex}
                             onVisibleChange={visible => setCopyPopoverVisible(visible)}
                             content={
                               <>
@@ -289,7 +290,7 @@ function Notes(props){
                               </>
                             }
                           >
-                            <div style={{ padding: 0, border: '0px solid #2fa8d4' }}>
+                            <div onClick={() => setCurrentSelectedNoteIndex(index)} style={{ padding: 0, border: '0px solid #2fa8d4' }}>
                               <Button 
                                 style={{ border: '0px', backgroundColor: 'transparent' }}
                                 icon={<CopyOutlined style={{ color: '#2fa8d4', fontSize: 17, marginTop: 4 }}/>} 

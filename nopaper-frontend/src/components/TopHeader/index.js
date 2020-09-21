@@ -33,11 +33,11 @@ const TopHeader = (props) => {
   }
 
   const onSelectUser = (value) => {
-    const selectedUser = userList.find(user => user._id == value);
+    const selectedUser = userList.find(user => user.username == value);
     console.log(value);
     history.replace({
       pathname: "/dashboard",
-      state: { selectedUser: value, selectedUserName: selectedUser.name }
+      state: { selectedUser: selectedUser._id, selectedUserName: selectedUser.name }
     })
     history.go(0);
   }
@@ -67,7 +67,7 @@ const TopHeader = (props) => {
             {
               userList.length > 0 && userList.map((user, index) => {
                 return (
-                  <Select.Option value={user._id} key={index}>
+                  <Select.Option value={user.username} key={index}>
                     {user.username}
                   </Select.Option>
                 );
