@@ -2,13 +2,13 @@ import React,{useState} from 'react';
 import { Form, Input, Button } from 'antd';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { KeyOutlined, MailOutlined, UserOutlined, SmileOutlined } from '@ant-design/icons'
-
+import { useHistory } from "react-router-dom";
 import './styles.css';
 import Api from '../../modules/api';
 
 
 function RegisterForm(props) {
-
+  const history = useHistory();
   const [ name, setName ] = useState('');
   const [ username, setUsername ] = useState('');
   const [ email, setEmail ] = useState('');
@@ -17,7 +17,12 @@ function RegisterForm(props) {
   const handleRegister = async () => {
     try {
       await Api.register(name, username, email, password);
-      alert("Cadastro bem sucedido!!");
+      const res = await Api.login(email, password);
+      
+      sessionStorage.setItem('token', res.token);
+      sessionStorage.setItem('username', res.data.name);
+
+      history.push('/dashboard');
     } catch (error) {
       alert("Dados faltando ou incorretos");
     }
