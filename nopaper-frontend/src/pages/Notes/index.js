@@ -157,7 +157,8 @@ function Notes(props){
             
             <div style={{ alignContent: 'center', justifyContent: 'center', display: 'flex' }}>
               {}
-              <Avatar style={{ backgroundColor: "greenyellow", fontSize: 75, marginBottom: '20px'}} size={130}>{currentNotebook.author && currentNotebook.author[0] || username[0]}</Avatar>
+              <Avatar style={{ backgroundColor: '#'+(0x1000000+((username.charCodeAt(0))/100)*0xffffff).toString(16).substr(1,6), fontSize: 75, marginBottom: '20px'}}
+                size={130}>{currentNotebook.author && currentNotebook.author[0] || username[0]}</Avatar>
             </div>
             
             <span style={{ fontSize: 20, fontWeight: 'bold', color: 'rgba(0,0,0,0.8)' }}>{notebookName}</span>
