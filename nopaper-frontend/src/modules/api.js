@@ -203,6 +203,16 @@ async function getOtherUserNotebooks(userId) {
   }
 }
 
+async function cloneNotebook(id) {
+  try {
+    await post("/notebook/clone", {
+      id
+    });
+  } catch (err) {
+    throw new Error(err.message || 'Erro');
+  }
+}
+
 //new note
 //list note
 //crair campo username
@@ -219,7 +229,8 @@ export default {
   editNotebookName,
   editNote,
   getUserList,
-  getOtherUserNotebooks
+  getOtherUserNotebooks,
+  cloneNotebook
 };
 
 

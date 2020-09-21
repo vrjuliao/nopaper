@@ -90,6 +90,21 @@ function Notes(props){
     }
   }
 
+  const cloneNotebook = async () => {
+    try {
+      await Api.cloneNotebook(currentNotebook._id);
+      notification.success({
+        description: 'Nota editada com sucesso!',
+        message: 'Pronto!'
+      });
+    } catch (err) {
+      notification.error({
+        description: 'Erro ao clonar o notebook',
+        message: 'Oopss...'
+      });
+    }
+  }
+
   return(
     <div id='page-notes'>
       
@@ -169,7 +184,7 @@ function Notes(props){
               }
 
               { !props.location.state.allowed &&
-                <div style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
+                <div onClick={() => cloneNotebook()} style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
                   <Button 
                     style={{ border: '0px' }}
                     icon={<CopyOutlined style={{ color: '#2fa8d4', fontSize: 20, marginTop: 4 }}/>} 
