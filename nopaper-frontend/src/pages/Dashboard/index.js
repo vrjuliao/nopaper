@@ -94,7 +94,7 @@ function Dashboard(props) {
                     <div style={{ display: 'inline-flex', cursor: 'pointer' }} 
                     onClick={() => history.push({
                         pathname: '/notes',
-                        state: { notebook, allowed }
+                        state: { notebook, allowed, selectedUserName: props.location.state.selectedUserName  }
                       }) }>
                       <div style={{ width: 15, height: 145, backgroundColor: colors[index % (colors.length)], borderTopLeftRadius: 8.5 }}>
                         <div style={{ marginTop: 137, width: 0, height: 0, borderLeft: '7.5px solid transparent', borderRight: '7.5px solid transparent', borderBottom: '8px solid white' }}></div>

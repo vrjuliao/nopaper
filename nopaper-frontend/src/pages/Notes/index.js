@@ -130,7 +130,7 @@ function Notes(props){
   return(
     <div id='page-notes'>
       
-      <TopHeader username={username}/>
+      <TopHeader username={props.location.state.allowed ? username : props.location.state.selectedUserName } notCurrentUser={!props.location.state.allowed}/>
 
       <div style={{ backgroundColor: '#fff', marginLeft: '17.5%', width: '65%', height: '-webkit-calc(100% - 95px)', overflow: 'scroll', padding: 20, }}>
         
