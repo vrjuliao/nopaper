@@ -1,22 +1,28 @@
 import React,{useState} from 'react';
 import { Form, Input, Button } from 'antd';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
-import { KeyOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
-
+import { KeyOutlined, MailOutlined, UserOutlined, SmileOutlined } from '@ant-design/icons'
+import { useHistory } from "react-router-dom";
 import './styles.css';
 import Api from '../../modules/api';
 
 
 function RegisterForm(props) {
-
+  const history = useHistory();
   const [ name, setName ] = useState('');
+  const [ username, setUsername ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
 
   const handleRegister = async () => {
     try {
-      await Api.register(name, email, password);
-      alert("Cadastro bem sucedido!!");
+      await Api.register(name, username, email, password);
+      const res = await Api.login(email, password);
+      
+      sessionStorage.setItem('token', res.token);
+      sessionStorage.setItem('username', res.data.name);
+
+      history.push('/dashboard');
     } catch (error) {
       alert("Dados faltando ou incorretos");
     }
@@ -47,6 +53,25 @@ function RegisterForm(props) {
             type='text'
             value={name}
             onChange={(value) => setName(value.target.value)}
+            />
+        </Form.Item>
+
+        <Form.Item
+            name="username"
+            rules={[
+            {
+                required: true,
+                message: 'Insira um belo username.',
+            },
+            ]}
+        >
+            <Input 
+            size='large'
+            prefix={<SmileOutlined style={{ marginRight: 10, color: '#0cca9a' }} className="site-form-item-icon" />} 
+            placeholder="Seu username"
+            type='text'
+            value={username}
+            onChange={(value) => setUsername(value.target.value)}
             />
         </Form.Item>
 
