@@ -82,7 +82,7 @@ const TopHeader = (props) => {
             
             <HomeOutlined style={{ fontSize: 20, marginLeft: 20, border: '1px solid #ffbc05', padding: 10, borderRadius: 8, color: '#ffbc05', cursor: 'pointer' }} />
           </div>
-          <div>
+          <div onClick={() => history.push("/login")}>
             <ArrowRightOutlined style={{ fontSize: 20, marginLeft: 10, border: '1px solid #ed2b58', padding: 10, borderRadius: 8, color: '#ed2b58', cursor: 'pointer' }} />
           </div>
         </div>
