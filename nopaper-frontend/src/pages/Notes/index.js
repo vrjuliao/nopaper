@@ -206,10 +206,10 @@ function Notes(props){
               }
 
               { !props.location.state.allowed &&
-                <div onClick={() => cloneNotebook()} style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
+                <div onClick={() => cloneNotebook()} style={{ padding: 8, border: '2px solid #0cca9a', borderRadius: 50 }}>
                   <Button 
                     style={{ border: '0px' }}
-                    icon={<CopyOutlined style={{ color: '#2fa8d4', fontSize: 20, marginTop: 4 }}/>} 
+                    icon={<CopyOutlined style={{ color: '#0cca9a', fontSize: 20, marginTop: 4 }}/>} 
                   />
                 </div>
               }
@@ -290,10 +290,10 @@ function Notes(props){
                               </>
                             }
                           >
-                            <div onClick={() => setCurrentSelectedNoteIndex(index)} style={{ padding: 0, border: '0px solid #2fa8d4' }}>
+                            <div onClick={() => setCurrentSelectedNoteIndex(index)} style={{ padding: 0, border: '0px solid #0cca9a' }}>
                               <Button 
                                 style={{ border: '0px', backgroundColor: 'transparent' }}
-                                icon={<CopyOutlined style={{ color: '#2fa8d4', fontSize: 17, marginTop: 4 }}/>} 
+                                icon={<CopyOutlined style={{ color: '#0cca9a', fontSize: 17, marginTop: 4 }}/>} 
                               />
                             </div>
                           </Popover>
