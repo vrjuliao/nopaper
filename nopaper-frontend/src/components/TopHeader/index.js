@@ -49,7 +49,7 @@ const TopHeader = (props) => {
           history.push("/dashboard");
           history.go(0);
         }} src={require('../../assets/icons/icon_long.jpeg')} style={{ width: 200, height: 40, cursor: 'pointer' }} />
-        <Avatar style={{ backgroundColor: '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6), 
+        <Avatar style={{ backgroundColor: '#'+(0x1000000+((props.username.charCodeAt(0))/100)*0xffffff).toString(16).substr(1,6), 
           verticalAlign: 'middle', marginLeft: 40, fontSize: 30, marginBottom: 5 }} size={55}>{props.username[0] || ''}</Avatar>
         <span style={{ marginLeft: 20, fontWeight: 'bold', color: 'rgba(0,0,0,0.7)', fontSize: 23 }} >{props.username}</span>
         
