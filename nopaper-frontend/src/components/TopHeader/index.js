@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Avatar, Badge, Input, Select, notification } from 'antd';
-import { StarOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { StarOutlined, ArrowRightOutlined, HomeOutlined } from '@ant-design/icons';
 import Api from '../../modules/api';
 import { useHistory } from "react-router-dom";
 
@@ -45,7 +45,10 @@ const TopHeader = (props) => {
   return (
     <div style={{ backgroundColor: 'white', width: '100vw', height: 95, ...shadow, display: 'flex', flex: 3,  alignItems: 'center', padding: 20, position: 'relative', zIndex: 1 }}>
       <div style={{ flex: 2 }}>
-        <img src={require('../../assets/icons/icon_long.jpeg')} style={{ width: 200, height: 40 }} />
+        <img onClick={() => {
+          history.push("/dashboard");
+          history.go(0);
+        }} src={require('../../assets/icons/icon_long.jpeg')} style={{ width: 200, height: 40, cursor: 'pointer' }} />
         <Avatar style={{ backgroundColor: 'greenyellow', verticalAlign: 'middle', marginLeft: 40, fontSize: 30, marginBottom: 5 }} size={55}>{props.username[0] || ''}</Avatar>
         <span style={{ marginLeft: 20, fontWeight: 'bold', color: 'rgba(0,0,0,0.7)', fontSize: 23 }} >{props.username}</span>
         
@@ -72,8 +75,12 @@ const TopHeader = (props) => {
             }
           </Select>
 
-          <div>
-            <StarOutlined style={{ fontSize: 20, marginLeft: 20, border: '1px solid #ffbc05', padding: 10, borderRadius: 8, color: '#ffbc05', cursor: 'pointer' }} />
+          <div onClick={() => {
+            history.push("/dashboard");
+            history.go(0);
+          }}>
+            
+            <HomeOutlined style={{ fontSize: 20, marginLeft: 20, border: '1px solid #ffbc05', padding: 10, borderRadius: 8, color: '#ffbc05', cursor: 'pointer' }} />
           </div>
           <div>
             <ArrowRightOutlined style={{ fontSize: 20, marginLeft: 10, border: '1px solid #ed2b58', padding: 10, borderRadius: 8, color: '#ed2b58', cursor: 'pointer' }} />
