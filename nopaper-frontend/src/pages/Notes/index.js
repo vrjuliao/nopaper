@@ -100,7 +100,7 @@ function Notes(props){
     try {
       await Api.cloneNotebook(currentNotebook._id);
       notification.success({
-        description: 'Nota editada com sucesso!',
+        description: 'Caderno copiado com sucesso!',
         message: 'Pronto!'
       });
     } catch (err) {
@@ -115,7 +115,7 @@ function Notes(props){
     try {
       await Api.cloneNote(noteId, notebookCloneId);
       notification.success({
-        description: 'Nota editada com sucesso!',
+        description: 'Nota copiada com sucesso!',
         message: 'Pronto!'
       });
     } catch (err) {
