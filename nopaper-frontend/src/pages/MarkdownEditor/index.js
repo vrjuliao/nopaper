@@ -86,9 +86,9 @@ function MarkdownEditor(props) {
               </div>
               <div onClick={() => { 
                 if (!props.location.state.note) {
-                  saveNote()
+                  saveNote();
                 } else {
-                  editNote()
+                  editNote();
                 }
               }} style={{ marginLeft: 15,  backgroundColor: '#2fa8d4', paddingLeft: 30, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
                 <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Salvar</span>

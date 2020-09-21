@@ -6,11 +6,13 @@ import Login from '../src/pages/Login';
 import Dashboard from '../src/pages/Dashboard';
 import MarkdownEditor from '../src/pages/MarkdownEditor';
 import Notes from '../src/pages/Notes';
+import Preview from '../src/pages/Preview';
 
 const routes = [
   { path: '/dashboard', component: Dashboard },
   { path: '/markdown-editor', component: MarkdownEditor },
-  { path: '/notes', component: Notes }
+  { path: '/notes', component: Notes },
+  { path: '/preview', component: Preview }
 ]
 
 const App = () => {

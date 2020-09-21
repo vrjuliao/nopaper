@@ -232,7 +232,11 @@ function Notes(props){
                   <div key={index} style={{ marginTop: index != 0 && 20, borderRadius: 6, padding: 7, paddingBottom: 15, ...shadow }}>
 
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingLeft: 15 }}>
-                      <span style={{ fontSize: 18 }}>{note.title}</span>
+                      
+                      <span onClick={() => history.push({
+                        pathname: "/preview",
+                        state: { note, currentNotebook, allowed: props.location.state.allowed, selectedUserName: props.location.state && props.location.state.selectedUserName  }
+                      })} style={{ fontSize: 18, cursor: 'pointer' }}>{note.title}</span>
 
                       <div style={{ alignContent: 'center', justifyContent: 'space-around', display: 'flex' }} >
                         
