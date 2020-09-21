@@ -1,5 +1,6 @@
 var Notebook = require('../models/notebookModel');
 var Note = require('../models/noteModel');
+const dayjs = require('dayjs');
 
 exports.getNotesById = async (req, res) => {
   try {
@@ -9,9 +10,18 @@ exports.getNotesById = async (req, res) => {
       'title',
       'markdown',
       'notebookId',
-      'createdAt',
-    ]).sort({ updatedAt: -1 });
-    return res.send(notes);
+      'updatedAt',
+    ]).sort({ updatedAt: -1 }).exec(function (err, success){
+      if (err) return res.status(501).send('Notebook não foi encontrado');
+      let response = success.map((note) => {
+        let result = note.toJSON();
+        return {
+          ...result,
+          updatedAt: dayjs(note.updatedAt).format('DD/MM/YYYY')
+        };
+      });
+      return res.send(response);
+    });
   } catch (err) {
     return res.status(400).send('Notebook id inválido.');
   }

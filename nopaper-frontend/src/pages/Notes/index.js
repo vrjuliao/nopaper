@@ -321,7 +321,7 @@ function Notes(props){
                     </div>
 
                     <div style={{ paddingLeft: 15, marginTop: 7 }}>
-                      <Tag color="volcano">{note.createdAt}</Tag>
+                      <Tag color="volcano">{note.updatedAt}</Tag>
                     </div>
 
                   </div>

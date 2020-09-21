@@ -90,7 +90,9 @@ function Dashboard(props) {
             <div style={{textAlign:"center"}}>
                 <FrownOutlined style={{fontSize: 64, textAlign: "center", opacity: "30%"}} />
                 <div style={{marginTop: 16, opacity: "40%"}}>
-                  Você ainda não tem cadernos!
+                {allowed ? "Você": props.location.state.selectedUserName
+                +" ainda não tem cadernos!" 
+                }
                 </div>
             </div>
           :
