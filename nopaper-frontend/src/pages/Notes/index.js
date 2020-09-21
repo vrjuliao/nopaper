@@ -93,21 +93,24 @@ function Notes(props){
   return(
     <div id='page-notes'>
       
-      <TopHeader />
+      <TopHeader username={username}/>
 
       <div style={{ backgroundColor: '#fff', marginLeft: '17.5%', width: '65%', height: '-webkit-calc(100% - 95px)', overflow: 'scroll', padding: 20, }}>
         
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
 
-          <div onClick={() => history.push("/dashboard")} style={{ alignItems: 'center', backgroundColor: '#2fa8d4', paddingLeft: 20, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
+          <div onClick={() => history.goBack()} style={{ alignItems: 'center', backgroundColor: '#2fa8d4', paddingLeft: 20, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
             <ArrowLeftOutlined style={{ fontSize: 15, color: 'white' }} />
             <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Voltar</span>
           </div>
 
-          <div onClick={() => history.push({ pathname: "/markdown-editor", state: { currentNotebook }}) } style={{ alignItems: 'center', backgroundColor: '#2fa8d4', paddingLeft: 20, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
-            <PlusOutlined style={{ fontSize: 15, color: 'white' }} />
-            <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Criar nota</span>
-          </div>
+          {
+            props.location.state.allowed &&
+            <div onClick={() => history.push({ pathname: "/markdown-editor", state: { currentNotebook }}) } style={{ alignItems: 'center', backgroundColor: '#2fa8d4', paddingLeft: 20, paddingRight: 40, paddingTop: 8, paddingBottom: 8, borderRadius: 5, cursor: 'pointer', display: 'flex' }}>
+              <PlusOutlined style={{ fontSize: 15, color: 'white' }} />
+              <span style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Criar nota</span>
+            </div>
+          }
 
         </div>
 
@@ -124,44 +127,46 @@ function Notes(props){
             <span style={{ fontSize: 20, color: 'rgba(0,0,0,0.4)' }}>Criado em {currentNotebook.createdAt}</span>
 
             <div style={{ alignContent: 'center', justifyContent: 'space-around', display: 'flex', marginTop: 15 }} >
-              
-            <Popover
-                title='Editar nome do Caderno'
-                trigger='click'
-                placement='top'
-                visible={popoverVisible}
-                onVisibleChange={visible => setPopoverVisible(visible)}
-                content={
-                  <>
-                  <Form layout="vertical" className="user-modal-form" style={{ width: 200 }}>
-                    <Form.Item label={<span style={{ fontWeight: 'bold' }}>Nome do Caderno</span>}>
-                      <Input 
-                        placeholder={'Escreva aqui'}
-                        onChange={(value) => setNewNotebookName(value.target.value)}
-                        value={newNotebookName}
-                        style={{ width: 200 }}
-                      />
-                    </Form.Item>
-                    <Form.Item>
-                      <Button type='primary' style={{ width: 200 }} onClick={() => {
-                          setPopoverVisible(false);
-                          updateNotebookName();
-                          setNewNotebookName('');
-                        }}>
-                        Editar Caderno
-                      </Button>
-                    </Form.Item>
-                  </Form>
-                  </>
-                }
-              >
-                <div style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
-                  <Button 
-                    style={{ border: '0px' }}
-                    icon={<FormOutlined style={{ color: '#2fa8d4', fontSize: 20, marginTop: 4 }} />} 
-                  />
-                </div>
-              </Popover>
+            
+            { props.location.state.allowed &&
+              <Popover
+                  title='Editar nome do Caderno'
+                  trigger='click'
+                  placement='top'
+                  visible={popoverVisible}
+                  onVisibleChange={visible => setPopoverVisible(visible)}
+                  content={
+                    <>
+                    <Form layout="vertical" className="user-modal-form" style={{ width: 200 }}>
+                      <Form.Item label={<span style={{ fontWeight: 'bold' }}>Nome do Caderno</span>}>
+                        <Input 
+                          placeholder={'Escreva aqui'}
+                          onChange={(value) => setNewNotebookName(value.target.value)}
+                          value={newNotebookName}
+                          style={{ width: 200 }}
+                        />
+                      </Form.Item>
+                      <Form.Item>
+                        <Button type='primary' style={{ width: 200 }} onClick={() => {
+                            setPopoverVisible(false);
+                            updateNotebookName();
+                            setNewNotebookName('');
+                          }}>
+                          Editar Caderno
+                        </Button>
+                      </Form.Item>
+                    </Form>
+                    </>
+                  }
+                >
+                  <div style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
+                    <Button 
+                      style={{ border: '0px' }}
+                      icon={<FormOutlined style={{ color: '#2fa8d4', fontSize: 20, marginTop: 4 }} />} 
+                    />
+                  </div>
+                </Popover>
+              }
 
               <div style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
                 <Button 
@@ -169,14 +174,15 @@ function Notes(props){
                   icon={<CopyOutlined style={{ color: '#2fa8d4', fontSize: 20, marginTop: 4 }}/>} 
                 />
               </div>
-
-              <div onClick={() => deleteNotebook()} style={{ padding: 8, border: '2px solid #ff584f', borderRadius: 50 }}>
-                <Button 
-                  style={{ border: '0px' }}
-                  icon={<DeleteOutlined style={{ color: '#ff584f', fontSize: 20, marginTop: 4 }}/>} 
-                />
-              </div>
-        
+              
+              { props.location.state.allowed && 
+                <div onClick={() => deleteNotebook()} style={{ padding: 8, border: '2px solid #ff584f', borderRadius: 50 }}>
+                  <Button 
+                    style={{ border: '0px' }}
+                    icon={<DeleteOutlined style={{ color: '#ff584f', fontSize: 20, marginTop: 4 }}/>} 
+                  />
+                </div>
+              }
             </div>
           </div>
 
@@ -190,29 +196,39 @@ function Notes(props){
                       <span style={{ fontSize: 18 }}>{note.title}</span>
 
                       <div style={{ alignContent: 'center', justifyContent: 'space-around', display: 'flex' }} >
-                        <div onClick={() => history.push({
-                          pathname: '/markdown-editor',
-                          state: { note, currentNotebook }
-                        })} style={{ padding: 0, border: '0px solid #2fa8d4' }}>
-                          <Button 
-                            style={{ border: '0px', backgroundColor: 'transparent' }}
-                            icon={<FormOutlined style={{ color: '#2fa8d4', fontSize: 17, marginTop: 4 }} />} 
-                          />
-                        </div>
-
+                        
+                        
+                        { props.location.state.allowed && 
+                          <div onClick={() => history.push({
+                            pathname: '/markdown-editor',
+                            state: { note, currentNotebook }
+                          })} style={{ padding: 0, border: '0px solid #2fa8d4' }}>
+                            <Button 
+                              style={{ border: '0px', backgroundColor: 'transparent' }}
+                              icon={<FormOutlined style={{ color: '#2fa8d4', fontSize: 17, marginTop: 4 }} />} 
+                            />
+                          </div>
+                        }
+                        
+                        
+                        
                         <div style={{ padding: 0, border: '0px solid #2fa8d4' }}>
                           <Button 
                             style={{ border: '0px', backgroundColor: 'transparent' }}
                             icon={<CopyOutlined style={{ color: '#2fa8d4', fontSize: 17, marginTop: 4 }}/>} 
                           />
                         </div>
+                        
 
-                        <div onClick={() => deleteNote(note._id)} style={{ padding: 0, border: '0px solid #ff584f' }}>
-                          <Button
-                            style={{ border: '0px', backgroundColor: 'transparent' }}
-                            icon={<DeleteOutlined style={{ color: '#ff584f', fontSize: 17, marginTop: 4 }}/>} 
-                          />
-                        </div>
+                        { props.location.state.allowed && 
+                          <div onClick={() => deleteNote(note._id)} style={{ padding: 0, border: '0px solid #ff584f' }}>
+                            <Button
+                              style={{ border: '0px', backgroundColor: 'transparent' }}
+                              icon={<DeleteOutlined style={{ color: '#ff584f', fontSize: 17, marginTop: 4 }}/>} 
+                            />
+                          </div>
+                        }
+                        
                       </div>
 
                     </div>
