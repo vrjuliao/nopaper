@@ -19,32 +19,32 @@ Cadernos virtuais colaborativos.
 
 * Eu como usuário gostaria de criar anotações de forma virtual, com uma fácil
   notação de escrita. Para acessá-las no futuro.
-  - [ ] Criar página de edição de markdown online - Gustavo.
-  - [ ] Criar visualizador de anotações em markdown (preview) - Lucas. 
-  - [ ] Criar o modelo de **Notas** (backend e banco de dados) - Luiz.
-  - [ ] Salvar os arquivos criados em um servidor - Matheus.
+  - [x] Criar página de edição de markdown online - Gustavo.
+  - [x] Criar visualizador de anotações em markdown (preview) - Lucas. 
+  - [x] Criar o modelo de **Notas** (backend e banco de dados) - Luiz.
+  - [x] Salvar os arquivos criados em um servidor - Matheus.
 
 * Eu como usuário gostaria de organizar minhas anotações. Para que possa 
   separá-las por tema ou assunto.
-  - [ ] Criar tela dashboard - Vinícius.
+  - [x] Criar tela dashboard - Vinícius.
   - [x] Criar modelo de **Mochila** - Gustavo.
 
 * Eu como usuário gostaria de acessar minha própria conta e ser autenticado.
   Para que somente eu consiga editar as minhas próprias notas.
   - [x] Criar tela de login - Lucas.
-  - [ ] Criar tela de registro - Luiz.
+  - [x] Criar tela de registro - Luiz.
   - [x] Criar modelo de **Usuário** - Matheus.
-  - [ ] Criar estrutura de permissões - Vinícius.
+  - [x] Criar estrutura de permissões - Vinícius.
 
 * Eu como usuário desejo encontrar outros usuários ou arquivos de Anotações. 
   Para que consiga acompanhar o desenvolvimento das notas.
-  - [ ] Criar mecanismo de busca - Gustavo.
-  - [ ] Criar a tela de resultados de busca - Lucas.
+  - [x] Criar mecanismo de busca - Gustavo.
+  - [x] Criar a tela de resultados de busca - Lucas.
   
 * Eu como usuário gostaria fazer uma cópia das anotações de outros usuários
   para minhas anotações.
-  - [ ] Criar a estrutura de copia de arquivos - Luiz.
-  - [ ] Criar o botão de cópia - Matheus.
+  - [x] Criar a estrutura de copia de arquivos - Luiz.
+  - [x] Criar o botão de cópia - Matheus.
 
 * Eu como usuário desejo marcar outros usuários como favoritos. Para facilitar
   o acesso às notas desses outros perfis do sistema.
