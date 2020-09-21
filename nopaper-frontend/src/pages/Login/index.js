@@ -20,7 +20,7 @@ function Login(props) {
       <div className="logo-container">
         <div className="text-container">
           <span className="title" >{'Nopaper.'}</span>
-          <p style={{ color: 'white', fontSize: 40,  }}>Cadernos colaborativos</p>
+          <p style={{ color: 'white', fontSize: 40,  }}>Cadernos compartilhados</p>
         </div>
       </div>
       
