@@ -68,7 +68,7 @@ function MarkdownEditor(props) {
     <div style={{ height: '100vh' }}>
       <TopHeader username={username}/>
 
-      <div style={{ alignItems: 'center', height: '-webkit-calc(100% - 95px)', position: 'relative' }} >
+      <div style={{ alignItems: 'center', height: 'calc(100% - 95px)', position: 'relative' }} >
         <div style={{ backgroundColor: '#fff', marginLeft: '17.5%', width: '65%', height: '100%', padding: 20, paddingTop: 20, overflow: 'scroll' }}>
           
           <div style={{ display: 'flex' }}>

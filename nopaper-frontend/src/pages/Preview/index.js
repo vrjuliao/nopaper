@@ -27,7 +27,7 @@ function Preview(props){
       
       <TopHeader username={props.location.state.allowed ? username : props.location.state.selectedUserName } notCurrentUser={!props.location.state.allowed}/>
 
-      <div style={{ backgroundColor: '#fff', marginLeft: '17.5%', width: '65%', height: '-webkit-calc(100% - 95px)', overflow: 'scroll', padding: 20, }}>
+      <div style={{ backgroundColor: '#fff', marginLeft: '17.5%', width: '65%', height: 'calc(100% - 95px)', overflow: 'scroll', padding: 20, }}>
         
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
 
