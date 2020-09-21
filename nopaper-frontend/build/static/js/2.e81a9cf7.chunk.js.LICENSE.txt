@@ -10,6 +10,8 @@ object-assign
   http://jedwatson.github.io/classnames
 */
 
+/*! https://mths.be/punycode v1.4.1 by @mathias */
+
 /** @license React v0.19.1
  * scheduler.production.min.js
  *
