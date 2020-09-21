@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Avatar, Button, Tag, Divider, Spin, notification, Popover, Form, Input } from 'antd';
+import { Avatar, Button, Tag, Divider, Spin, notification, Popover, Form, Input, Select } from 'antd';
 import { PlusOutlined, ArrowLeftOutlined, CopyOutlined, DeleteOutlined, FormOutlined } from '@ant-design/icons'
 import 'antd/dist/antd.css';
 import { useHistory } from "react-router-dom";
@@ -19,11 +19,15 @@ function Notes(props){
   const history = useHistory();
   const currentNotebook = props.location.state.notebook;
   const username = sessionStorage.getItem('username');
+  
   const [loading, setLoading] = useState(false);
   const [notes, setNotes] = useState([]);
   const [newNotebookName, setNewNotebookName] = useState('');
   const [popoverVisible, setPopoverVisible] = useState(false);
+  const [copyPopoverVisible, setCopyPopoverVisible] = useState(false);
   const [notebookName, setNotebookName] = useState(currentNotebook.name);
+  const [userNotebooks, setUserNotebooks] = useState([]);
+  const [notebookCloneId, setNotebookCloneId] = useState('');
 
   useEffect(() => {
     loadApiData();
@@ -34,6 +38,8 @@ function Notes(props){
     try {
       const notess = await Api.getUserNotes(currentNotebook._id);
       setNotes(notess);
+      const userNotebooks = await Api.getUserNotebooks();
+      setUserNotebooks(userNotebooks);
       setLoading(false);
     } catch (err) {
       console.log('Erro ao tentar encontrar as notas');
@@ -93,6 +99,21 @@ function Notes(props){
   const cloneNotebook = async () => {
     try {
       await Api.cloneNotebook(currentNotebook._id);
+      notification.success({
+        description: 'Nota editada com sucesso!',
+        message: 'Pronto!'
+      });
+    } catch (err) {
+      notification.error({
+        description: 'Erro ao clonar o notebook',
+        message: 'Oopss...'
+      });
+    }
+  }
+
+  const cloneNote = async (noteId) => {
+    try {
+      await Api.cloneNote(noteId, notebookCloneId);
       notification.success({
         description: 'Nota editada com sucesso!',
         message: 'Pronto!'
@@ -229,12 +250,52 @@ function Notes(props){
                         
                         
                         { !props.location.state.allowed &&
-                          <div style={{ padding: 0, border: '0px solid #2fa8d4' }}>
-                            <Button 
-                              style={{ border: '0px', backgroundColor: 'transparent' }}
-                              icon={<CopyOutlined style={{ color: '#2fa8d4', fontSize: 17, marginTop: 4 }}/>} 
-                            />
-                          </div>
+
+                          <Popover
+                            title='Escolha o nome do Caderno'
+                            trigger='click'
+                            placement='top'
+                            visible={copyPopoverVisible}
+                            onVisibleChange={visible => setCopyPopoverVisible(visible)}
+                            content={
+                              <>
+                              <Form layout="vertical" className="user-modal-form" style={{ width: 200 }}>
+                                <Form.Item label={<span style={{ fontWeight: 'bold' }}>Nome do Caderno</span>}>
+                                  <Select
+                                    placeholder={'Escolha seu caderno'}
+                                    onSelect={(value) => setNotebookCloneId(value)}
+                                    showSearch
+                                  >
+                                    {
+                                      userNotebooks.map((notebook) => {
+                                        return (
+                                          <Select.Option key={notebook._id} value={notebook._id}>
+                                            {notebook.name}
+                                          </Select.Option>
+                                        );
+                                      })
+                                    }
+                                  </Select>
+                                </Form.Item>
+                                <Form.Item>
+                                  <Button disabled={notebookCloneId.length > 0 ? false : true} type='primary' style={{ width: 200 }} onClick={() => {
+                                      cloneNote(note._id);
+                                      setPopoverVisible(false);
+                                    }}>
+                                    Salvar nota
+                                  </Button>
+                                </Form.Item>
+                              </Form>
+                              </>
+                            }
+                          >
+                            <div style={{ padding: 0, border: '0px solid #2fa8d4' }}>
+                              <Button 
+                                style={{ border: '0px', backgroundColor: 'transparent' }}
+                                icon={<CopyOutlined style={{ color: '#2fa8d4', fontSize: 17, marginTop: 4 }}/>} 
+                              />
+                            </div>
+                          </Popover>
                         }
 
                         { props.location.state.allowed && 

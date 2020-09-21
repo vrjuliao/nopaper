@@ -69,7 +69,7 @@ exports.cloneNote = (req, res) => {
   Note.findById(req.body.noteId, (err, success) => {
     if (err) return res.status(400).send('Note id inválido.');
     var nova = new Note({
-      title: success.title + 'Copy',
+      title: success.title + ' (Copy)',
       markdown: success.markdown,
       notebookId: req.body.notebookId,
     });
