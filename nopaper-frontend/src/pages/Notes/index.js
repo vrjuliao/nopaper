@@ -168,12 +168,14 @@ function Notes(props){
                 </Popover>
               }
 
-              <div style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
-                <Button 
-                  style={{ border: '0px' }}
-                  icon={<CopyOutlined style={{ color: '#2fa8d4', fontSize: 20, marginTop: 4 }}/>} 
-                />
-              </div>
+              { !props.location.state.allowed &&
+                <div style={{ padding: 8, border: '2px solid #2fa8d4', borderRadius: 50 }}>
+                  <Button 
+                    style={{ border: '0px' }}
+                    icon={<CopyOutlined style={{ color: '#2fa8d4', fontSize: 20, marginTop: 4 }}/>} 
+                  />
+                </div>
+              }
               
               { props.location.state.allowed && 
                 <div onClick={() => deleteNotebook()} style={{ padding: 8, border: '2px solid #ff584f', borderRadius: 50 }}>
@@ -211,14 +213,14 @@ function Notes(props){
                         }
                         
                         
-                        
-                        <div style={{ padding: 0, border: '0px solid #2fa8d4' }}>
-                          <Button 
-                            style={{ border: '0px', backgroundColor: 'transparent' }}
-                            icon={<CopyOutlined style={{ color: '#2fa8d4', fontSize: 17, marginTop: 4 }}/>} 
-                          />
-                        </div>
-                        
+                        { !props.location.state.allowed &&
+                          <div style={{ padding: 0, border: '0px solid #2fa8d4' }}>
+                            <Button 
+                              style={{ border: '0px', backgroundColor: 'transparent' }}
+                              icon={<CopyOutlined style={{ color: '#2fa8d4', fontSize: 17, marginTop: 4 }}/>} 
+                            />
+                          </div>
+                        }
 
                         { props.location.state.allowed && 
                           <div onClick={() => deleteNote(note._id)} style={{ padding: 0, border: '0px solid #ff584f' }}>
