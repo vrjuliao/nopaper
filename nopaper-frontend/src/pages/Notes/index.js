@@ -127,6 +127,7 @@ function Notes(props){
     }
   }
 
+  const userVisual = props.location.state.allowed ? username : props.location.state.selectedUserName;
   return(
     <div id='page-notes'>
       
@@ -157,7 +158,7 @@ function Notes(props){
             
             <div style={{ alignContent: 'center', justifyContent: 'center', display: 'flex' }}>
               {}
-              <Avatar style={{ backgroundColor: '#'+(0x1000000+((username.charCodeAt(0))/100)*0xffffff).toString(16).substr(1,6), fontSize: 75, marginBottom: '20px'}}
+              <Avatar style={{ backgroundColor: '#'+(0x1000000+((userVisual.charCodeAt(0))/100)*0xffffff).toString(16).substr(1,6), fontSize: 75, marginBottom: '20px'}}
                 size={130}>{currentNotebook.author && currentNotebook.author[0] || username[0]}</Avatar>
             </div>
             
