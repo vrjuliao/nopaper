@@ -2,8 +2,9 @@
 
 Cadernos virtuais colaborativos.
 
-[Prototipo de baixa fidelidade](https://gustavovergara11129.invisionapp.com/public/share/WU1EL0XV3M)
-[Prototipo de alta fidelidade](https://xd.adobe.com/view/521c3200-1015-4758-abf0-6a35fb877ff7-074f/)
+[Prototipo de baixa fidelidade](https://gustavovergara11129.invisionapp.com/public/share/WU1EL0XV3M)<br/>
+[Prototipo de alta fidelidade](https://xd.adobe.com/view/521c3200-1015-4758-abf0-6a35fb877ff7-074f/)<br/><br/>
+[Vídeo de apresentação](https://www.youtube.com/watch?v=026MOPczikA&t=22s&ab_channel=GustavoLelis)
 
 ---
 ## Team
