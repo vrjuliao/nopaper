@@ -10,8 +10,7 @@ test('Should create a new notebook', async () => {
   
   await request(app).post('/notebook/new').send({
     name: 'req.body.name',
-    description: 'req.body.description',
-    userId: userOne._id
+    description: 'req.body.description'
   }).set('Content-Type', 'application/json').set('Accept', 'application/json').set('x-access-token', token).expect(200);
 
 });

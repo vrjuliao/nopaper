@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node dev-server.js",
-    "test": "jest --runInBand"
+    "test": "NODE_ENV=test jest --runInBand"
   },
   "keywords": [],
   "author": "",
