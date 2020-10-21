@@ -6,9 +6,10 @@ const User = require('../../models/userModel');
 const userOneId = new mongoose.Types.ObjectId();
 const userOne = {
   _id: userOneId,
+  username: 'mikee',
   name: 'Mike',
   email:'eleven@example.com',
-  password: '56what!!'
+  pwd: '56what!!'
 }
 
 const setupDatabase = async () => {
