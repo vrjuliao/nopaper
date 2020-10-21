@@ -16,3 +16,14 @@ test('Should signup a new user', async () => {
   }).set('Content-Type', 'application/json').set('Accept', 'application/json').expect(200);
 
 });
+
+test('Should not signup a new user', async () => {
+  
+  await request(app).post('/register').send({
+    name: 'Luiz',
+    email: 'luiz@example.com',
+    pwd: '',
+    username: 'blablabalbla'
+  }).set('Content-Type', 'application/json').set('Accept', 'application/json').expect(400);
+
+});
