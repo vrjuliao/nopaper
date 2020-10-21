@@ -12,6 +12,10 @@ const userOne = {
   pwd: '56what!!'
 }
 
+var token = jwt.sign({ userId: userOneId }, process.env.SECRET, {
+  expiresIn: 10800, // expires in 3h
+});
+
 const setupDatabase = async () => {
   await User.deleteMany();
   await new User(userOne).save();
@@ -19,5 +23,6 @@ const setupDatabase = async () => {
 
 module.exports = {
   userOne,
+  token,
   setupDatabase
 }
