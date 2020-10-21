@@ -11,10 +11,13 @@ const app = express();
 
 // Acesso à BD
 const mongoose = require('mongoose');
-let url = 'mongodb://localhost:27017/smartphones';
+
+// const uri =
+//   'mongodb+srv://no-paper-api-dev:exgkhx9eqPxcLTI3@nopapaer.zvop4.mongodb.net/no-paper-dev?retryWrites=true&w=majority';
 const uri =
-  'mongodb+srv://no-paper-api-dev:exgkhx9eqPxcLTI3@nopapaer.zvop4.mongodb.net/no-paper-dev?retryWrites=true&w=majority';
-let mongoDB = process.env.MONGODB_URI || uri;
+  'mongodb://localhost:27017/nopaper-api-test';
+
+  let mongoDB = process.env.MONGODB_URI || uri;
 mongoose.Promise = global.Promise;
 mongoose
   .connect(mongoDB, {
@@ -40,3 +43,5 @@ app.use('/', routes);
 //Servidor
 let porto = process.env.PORT || 8000;
 app.listen(porto, () => {});
+
+module.exports = app;
