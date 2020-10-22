@@ -35,7 +35,7 @@ test('Should return one user with name Will', async () => {
   
   const response = await request(app).get('/users').set('Content-Type', 'application/json').set('Accept', 'application/json').set('x-access-token', token).expect(200);
   expect(response.body.length).toBe(1);
-  expect(response.body[0].name).toBe('William');
+  expect(response.body[0].name).toBe('Will');
 
 });
 
