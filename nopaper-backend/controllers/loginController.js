@@ -3,7 +3,7 @@ var User = require('../models/userModel');
 
 exports.login = function (req, res, next) {
   User.find({ email: req.body.email }, function (err, user) {
-    if (err) return res.status(400).send('Usuário inválido!');
+    if (err || user.length === 0) return res.status(400).send('Usuário inválido!');
     if (user.length > 0 && user[0].pwd === req.body.pwd) {
       var usr = user[0];
       var id = usr._id;

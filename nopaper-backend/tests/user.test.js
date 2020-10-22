@@ -39,4 +39,20 @@ test('Should return one user with name Will', async () => {
 
 });
 
+// Teste normal [starling]
+test('Should not find valid user', async () => {
+  const response = await request(app).post('/login').send({
+    email: 'random@example.com',
+    pwd: 'random',
+  }).set('Content-Type', 'application/json').set('Accept', 'application/json').expect(400);
+  expect(response.text).toBe('Usuário inválido!');
+});
 
+// Teste mock (mock de usuário) [starling]
+test('Should not validate user', async () => {
+  const response = await request(app).post('/login').send({
+    email: 'will@example.com',
+    pwd: 'wrongpwd',
+  }).set('Content-Type', 'application/json').set('Accept', 'application/json').expect(400);
+  expect(response.body.message).toBe('Login inválido!');
+});
