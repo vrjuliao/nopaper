@@ -51,7 +51,6 @@ function Dashboard(props) {
     setLoading(true);
     try {
       const notebooks = await Api.getOtherUserNotebooks(props.location.state.selectedUser);
-      console.log(notebooks);
       setNotebooks(notebooks);
       setLoading(false);
     } catch (err) {

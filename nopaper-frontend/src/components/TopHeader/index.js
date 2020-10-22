@@ -34,7 +34,6 @@ const TopHeader = (props) => {
 
   const onSelectUser = (value) => {
     const selectedUser = userList.find(user => user.username == value);
-    console.log(value);
     history.replace({
       pathname: "/dashboard",
       state: { selectedUser: selectedUser._id, selectedUserName: selectedUser.name }

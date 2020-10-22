@@ -159,7 +159,6 @@ async function deleteNote(noteId, notebookId) {
 }
 
 async function editNotebookName(notebookId, name) {
-  console.log(notebookId, name);
   try {
     await put("/notebook/update", {
       notebookId,
