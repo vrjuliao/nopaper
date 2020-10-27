@@ -41,3 +41,17 @@ test('Should signup a new user', async () => {
 
     expect(userID).toBe(userOne._id.toHexString());
 });
+
+//Teste de integração com mongoose, UserSchema 
+// criação e armazenamento corretos de usuario [starling]
+test('Should create & save user successfully', async () => {
+  const userData = {email: 'mail@adress.com', username: 'myUsername', name: 'myNabe', pwd: '1234', favorites: []}
+  const validUser = new User(userData);
+  const savedUser = await validUser.save();
+  // Object Id deve ser defino quando armazenado no MongoDB.
+  expect(savedUser._id).toBeDefined();
+  expect(savedUser.name).toBe(userData.name);
+  expect(savedUser.gender).toBe(userData.gender);
+  expect(savedUser.dob).toBe(userData.dob);
+  expect(savedUser.loginUsing).toBe(userData.loginUsing);
+});
