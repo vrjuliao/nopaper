@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const User = require('../../models/userModel');
 const Notebook = require('../../models/notebookModel');
+const Note = require('../../models/noteModel');
 
 const userOneId = new mongoose.Types.ObjectId();
 const userOne = {
@@ -44,6 +45,14 @@ const notebookTwo = {
   userId: userTwoId
 }
 
+const noteOneId = new mongoose.Types.ObjectId();
+const noteOne = {
+  _id: noteOneId,
+  title: 'Note One',
+  markdown: 'Note for test',
+  notebookId: notebookOneId,
+}
+
 const setupDatabase = async () => {
   await User.deleteMany();
   await new User(userOne).save();
@@ -51,7 +60,8 @@ const setupDatabase = async () => {
   await Notebook.deleteMany();
   await new Notebook(notebookOne).save();
   await new Notebook(notebookTwo).save();
-
+  await Note.deleteMany();
+  await new Note(noteOne).save();
 }
 
 module.exports = {
@@ -59,5 +69,6 @@ module.exports = {
   token,
   setupDatabase,
   notebookOne,
-  notebookTwo
+  notebookTwo,
+  noteOne
 }

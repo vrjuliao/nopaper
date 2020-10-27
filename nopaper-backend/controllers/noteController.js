@@ -43,6 +43,7 @@ exports.setNewNote = async (req, res) => {
       return res.send('Nota criada com sucesso!');
     });
   } catch (err) {
+    console.log('luizin e o padeiro: uma história de amor')
     return res.status(400).send('Notebook id inválido.');
   }
 };
@@ -62,6 +63,7 @@ exports.updateNote = async (req, res) => {
 };
 
 exports.deleteNote = async (req, res) => {
+  console.log(req.query);
   try {
     await Notebook.find({ _id: req.query.notebookId, userId: req.query.userId });
     try {
