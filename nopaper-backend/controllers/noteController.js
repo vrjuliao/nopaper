@@ -63,7 +63,6 @@ exports.updateNote = async (req, res) => {
 };
 
 exports.deleteNote = async (req, res) => {
-  console.log(req.query);
   try {
     await Notebook.find({ _id: req.query.notebookId, userId: req.query.userId });
     try {

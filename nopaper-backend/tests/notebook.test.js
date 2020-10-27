@@ -6,7 +6,7 @@ const { setupDatabase, token, userOne, notebookOne, notebookTwo } = require('./f
 
 beforeEach(setupDatabase);
 
-// Teste normal
+// Teste de integração: criando um usuário [luiz]
 test('Should create a new notebook', async () => {
   
   await request(app).post('/notebook/new').send({
@@ -16,7 +16,7 @@ test('Should create a new notebook', async () => {
 
 });
 
-// Teste normal
+// Teste normal [luiz]
 test('Should not create a new notebook', async () => {
   
   await request(app).post('/notebook/new').send({
@@ -26,7 +26,7 @@ test('Should not create a new notebook', async () => {
 
 });
 
-// Teste normal
+// Teste normal [vinicius]
 test('Should delete a notebook', async () => {
   
   await request(app).delete(`/notebook/delete/?id=${notebookOne._id}`).send()
@@ -37,7 +37,7 @@ test('Should delete a notebook', async () => {
 
 });
 
-// Teste normal
+// Teste normal [vinicius]
 test('Should not delete a notebook, wrong user', async () => {
   
   await request(app).delete(`/notebook/delete/?id=${notebookTwo._id}`).send()
@@ -48,7 +48,7 @@ test('Should not delete a notebook, wrong user', async () => {
 
 });
 
-// Teste normal
+// Teste normal [vinicius]
 test('Should clone a notebook', async () => {
   
   await request(app).post('/notebook/clone')
@@ -59,5 +59,19 @@ test('Should clone a notebook', async () => {
   .set('Accept', 'application/json')
   .set('x-access-token', token)
   .expect(200);
+
+});
+
+//Teste de integração: impedindo criação de notebook [matheus]
+test('Should not clone a notebook', async () => {
+  
+  await request(app).post('/notebook/clone')
+  .send({
+    id: ''
+  })
+  .set('Content-Type', 'application/json')
+  .set('Accept', 'application/json')
+  .set('x-access-token', token)
+  .expect(500);
 
 });

@@ -3,7 +3,6 @@ const app = require('../server');
 const User = require('../models/userModel');
 
 const { setupDatabase, token, userOne, notebookOne, noteOne } = require('./fixtures/db');
-console.log(notebookOne._id, noteOne._id)
 beforeEach(setupDatabase);
 
   // Teste normal [starling]
@@ -55,17 +54,33 @@ test('Should not create note',async () => {
     expect(response.text).toBe('Nota deletada com sucesso!');
   });
 
+  // Teste normal [matheus]
   test('Should update note',async () => {
     const response = await request(app).put('/note/update').send({
-        title: 'titulo',
-        markdown: 'asdasd',
+        noteId: noteOne._id,
+        title: 'novo_titulo',
+        markdown: 'novo',
         notebookId: notebookOne._id,
         
     }).set('Content-Type', 'application/json')
     .set('Accept', 'application/json')
     .set('x-access-token', token).expect(200);
   
-    expect(response.text).toBe('Nota criada com sucesso!');
+    expect(response.text).toBe('Nota atualizada com sucesso!');
   });
 
+  // Teste normal [matheus]
+  test('Should not update note',async () => {
+    const response = await request(app).put('/note/update').send({
+        noteId: '',
+        title: 'novo_titulo',
+        markdown: 'novo',
+        notebookId: (notebookOne._id).toString(),
+        
+    }).set('Content-Type', 'application/json')
+    .set('Accept', 'application/json')
+    .set('x-access-token', token).expect(400);
+  
+    expect(response.text).toBe('Note id inválido.');
+  });
   

@@ -6,7 +6,7 @@ const { setupDatabase, token } = require('./fixtures/db');
 
 beforeEach(setupDatabase);
 
-// Teste normal
+// Teste normal [luiz]
 test('Should signup a new user', async () => {
   
   await request(app).post('/register').send({
@@ -18,7 +18,7 @@ test('Should signup a new user', async () => {
 
 });
 
-// Teste normal
+// Teste normal [luiz]
 test('Should not signup a new user', async () => {
   
   await request(app).post('/register').send({
@@ -30,7 +30,7 @@ test('Should not signup a new user', async () => {
 
 });
 
-// Teste mock (mock de usuário)
+// Teste mock (mock de usuário) [luiz]
 test('Should return one user with name Will', async () => {
   
   const response = await request(app).get('/users').set('Content-Type', 'application/json').set('Accept', 'application/json').set('x-access-token', token).expect(200);

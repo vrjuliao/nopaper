@@ -7,7 +7,7 @@ const { setupDatabase, userOne} = require('./fixtures/db');
 
 beforeEach(setupDatabase);
 
-// Mock para a geração do webtoken
+// Mock para a geração do webtoken [vinicius]
 test('Should signup a new user', async () => {
     
     // A função que gera um webtoken retorna a string "blablabla"
@@ -25,7 +25,7 @@ test('Should signup a new user', async () => {
 });
 
 // Teste de integração para a geração correta do webtoken ...
-//  usando o id do usuário como payload do token
+//  usando o id do usuário como payload do token [vinicius]
 test('Should signup a new user', async () => {
     console.log(userOne._id.toHexString())
 
