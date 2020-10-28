@@ -8,7 +8,7 @@ const { setupDatabase, userOne} = require('./fixtures/db');
 beforeEach(setupDatabase);
 
 // Mock para a geração do webtoken [vinicius]
-test('Should signup a new user', async () => {
+test('Should generate a token with "blablabla"', async () => {
     
     // A função que gera um webtoken retorna a string "blablabla"
     const jwtSpy = jest.spyOn(jwt, 'sign');
@@ -26,9 +26,7 @@ test('Should signup a new user', async () => {
 
 // Teste de integração para a geração correta do webtoken ...
 //  usando o id do usuário como payload do token [vinicius]
-test('Should signup a new user', async () => {
-    console.log(userOne._id.toHexString())
-
+test('Should decode correctly the generated webtoken', async () => {
     var token = jwt.sign({ userId: userOne._id }, process.env.SECRET, {
         expiresIn: 10800, // expires in 3h
       });
