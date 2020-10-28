@@ -19,7 +19,7 @@ test('Should signup a new user', async () => {
 });
 
 // Teste normal [luiz]
-test('Should not signup a new user', async () => {
+test('Should not signup a new user (password)', async () => {
   
   await request(app).post('/register').send({
     name: 'Luiz',
@@ -55,4 +55,40 @@ test('Should not validate user', async () => {
     pwd: 'wrongpwd',
   }).set('Content-Type', 'application/json').set('Accept', 'application/json').expect(400);
   expect(response.body.message).toBe('Login inválido!');
+});
+
+// Teste normal [gustavo]
+test('Should not signup a new user (name)', async () => {
+  
+  await request(app).post('/register').send({
+    name: '',
+    email: 'gustavo@gmail.com',
+    pwd: 'senha',
+    username: 'gustavo'
+  }).set('Content-Type', 'application/json').set('Accept', 'application/json').expect(400);
+
+});
+
+// Teste normal [gustavo]
+test('Should not signup a new user (email)', async () => {
+  
+  await request(app).post('/register').send({
+    name: 'gustavo',
+    email: '',
+    pwd: 'senha',
+    username: 'gustavo'
+  }).set('Content-Type', 'application/json').set('Accept', 'application/json').expect(400);
+
+});
+
+// Teste normal [gustavo]
+test('Should not signup a new user (username)', async () => {
+  
+  await request(app).post('/register').send({
+    name: 'gustavo',
+    email: 'gustavo@gmail.com',
+    pwd: 'senha',
+    username: ''
+  }).set('Content-Type', 'application/json').set('Accept', 'application/json').expect(400);
+
 });

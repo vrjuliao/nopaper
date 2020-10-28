@@ -6,7 +6,7 @@ const { setupDatabase, token, userOne, notebookOne, noteOne } = require('./fixtu
 beforeEach(setupDatabase);
 
   // Teste normal [starling]
-test('Should not create note',async () => {
+test('Should not create note (without markdown)',async () => {
     const response = await request(app).post('/note/new').send({
         title: 'titulo',
         markdown: ''
@@ -42,7 +42,7 @@ test('Should not create note',async () => {
     expect(response.text).toBe('Nota criada com sucesso!');
   });
 
-  // Teste com moc na variável 'noteOne' [matheus]
+  // Teste com mock na variável 'noteOne' [matheus]
   test('Should delete note',async () => {
     const response = await request(app).delete('/note/delete').query({
         noteId: (noteOne._id).toString(),
@@ -84,3 +84,14 @@ test('Should not create note',async () => {
     expect(response.text).toBe('Note id inválido.');
   });
   
+    // Teste normal [gustavo]
+test('Should not create note (without title)',async () => {
+  const response = await request(app).post('/note/new').send({
+      title: '',
+      markdown: 'teste'
+  }).set('Content-Type', 'application/json')
+  .set('Accept', 'application/json')
+  .set('x-access-token', token).expect(400);
+
+  expect(response.text).toBe('Requisição invalida.');
+});
